@@ -3,3 +3,5 @@ yarn.lock
 package-lock.json
 .idea/
 build/
+src/graphql/__generated__/
+yarn-error.log
