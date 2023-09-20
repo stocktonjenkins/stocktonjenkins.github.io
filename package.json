@@ -7,6 +7,7 @@
     "@apollo/client": "^3.8.3",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.9",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -50,14 +51,14 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",
-    "eslint-config-prettier": "^8.5.0",
-    "gh-pages": "^6.0.0",
-    "prettier": "2.2.1",
-    "typescript": "^5.2.2",
+    "@graphql-codegen/client-preset": "4.1.0",
     "@graphql-codegen/fragment-matcher": "^5.0.0",
     "@graphql-codegen/typescript": "^4.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.0",
-    "@graphql-codegen/client-preset": "4.1.0"
+    "eslint-config-prettier": "^8.5.0",
+    "gh-pages": "^6.0.0",
+    "prettier": "2.2.1",
+    "typescript": "^5.2.2"
   },
   "prettier": {
     "semi": false,

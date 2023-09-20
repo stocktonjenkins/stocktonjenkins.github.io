@@ -8,11 +8,9 @@ import {
 
 const uri = setContext(() => ({
   uri: 'https://erudite-tome-279803.uc.r.appspot.com/graphql/',
-  // uri: 'http://localhost:8005/graphql/',
 }))
 
 export const client = new ApolloClient({
-  // uri: 'https://erudite-tome-279803.uc.r.appspot.com/graphql/',
   link: ApolloLink.from([uri, new HttpLink({ credentials: 'same-origin' })]),
   cache: new InMemoryCache(),
 })
