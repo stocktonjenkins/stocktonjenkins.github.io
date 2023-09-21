@@ -10,7 +10,9 @@ const Section: React.FC<React.PropsWithChildren<SectionProps>> = props => {
   const { children, variant, ...BoxProps } = props
   return (
     <FadeInContent>
+      {/*@ts-ignore*/}
       <Box
+        //@ts-ignore
         {...BoxProps}
         //@ts-ignore
         sx={theme => ({

@@ -8,6 +8,7 @@ import ScanSteps from './components/info/ScanSteps'
 import IconTile from './components/tile/IconTile'
 import BoundingCubeIcon from './components/icons/BoundingCube.icon'
 import { ChevronRight, RestartAlt } from '@mui/icons-material'
+import PointCloud from './components/point-cloud/PointCloud'
 
 const FILL = `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis elit a dolor tincidunt, ut lacinia lorem rhoncus. Vestibulum eget mi eu libero congue ullamcorper. Nullam convallis lacus a dolor cursus, id bibendum quam volutpat.
@@ -41,6 +42,8 @@ const stockton = (color: string) => [
 function App() {
   const theme = useTheme()
   const color = theme.palette.secondary.main
+
+  // return <PointCloud />
   return (
     <Box margin={-1}>
       <NavBar />
@@ -155,18 +158,19 @@ function App() {
         </FlexBox.ColCenter>
       </Section>
       <Section variant={'light'} px={12} py={12}>
-        <Paper
-          sx={{
-            flex: 1,
-            height: 700,
-            alignContent: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <FlexBox.ColCenter height={'100%'} color={'white'}>
-            Point Cloud Renderer
-          </FlexBox.ColCenter>
-        </Paper>
+        {/*<Paper*/}
+        {/*  sx={{*/}
+        {/*    flex: 1,*/}
+        {/*    height: 700,*/}
+        {/*    alignContent: 'center',*/}
+        {/*    justifyContent: 'center',*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  /!*<FlexBox.ColCenter height={'100%'} color={'white'}>*!/*/}
+        {/*  /!*  Point Cloud Renderer*!/*/}
+        {/*  /!*</FlexBox.ColCenter>*!/*/}
+        {/*</Paper>*/}
+        <PointCloud />
       </Section>
       <Section variant={'grey'} px={12} py={12}>
         <Stack direction={'row'} spacing={12} justifyContent={'center'}>
