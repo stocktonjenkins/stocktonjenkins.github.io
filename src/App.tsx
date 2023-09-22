@@ -1,5 +1,13 @@
 import React from 'react'
-import { Box, Button, Paper, Stack, Typography, useTheme } from '@mui/material'
+import {
+  Box,
+  Button,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+  useTheme,
+} from '@mui/material'
 import NavBar from './components/layout/NavBar'
 import Section from './components/layout/Section'
 import { FlexBox } from './components/layout/FlexBox'
@@ -9,6 +17,7 @@ import IconTile from './components/tile/IconTile'
 import BoundingCubeIcon from './components/icons/BoundingCube.icon'
 import { ChevronRight, RestartAlt } from '@mui/icons-material'
 import PointCloud from './components/point-cloud/PointCloud'
+import PointCloudViewer from './components/point-cloud/PointCloudViewer'
 
 const FILL = `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis elit a dolor tincidunt, ut lacinia lorem rhoncus. Vestibulum eget mi eu libero congue ullamcorper. Nullam convallis lacus a dolor cursus, id bibendum quam volutpat.
@@ -158,19 +167,7 @@ function App() {
         </FlexBox.ColCenter>
       </Section>
       <Section variant={'light'} px={12} py={12}>
-        {/*<Paper*/}
-        {/*  sx={{*/}
-        {/*    flex: 1,*/}
-        {/*    height: 700,*/}
-        {/*    alignContent: 'center',*/}
-        {/*    justifyContent: 'center',*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  /!*<FlexBox.ColCenter height={'100%'} color={'white'}>*!/*/}
-        {/*  /!*  Point Cloud Renderer*!/*/}
-        {/*  /!*</FlexBox.ColCenter>*!/*/}
-        {/*</Paper>*/}
-        <PointCloud />
+        <PointCloudViewer />
       </Section>
       <Section variant={'grey'} px={12} py={12}>
         <Stack direction={'row'} spacing={12} justifyContent={'center'}>

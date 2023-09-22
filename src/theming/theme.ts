@@ -127,7 +127,7 @@ export const themeOptions: ThemeOptions = {
       fontFamily: 'IBM Plex Mono',
     },
     body2: {
-      fontSize: 16,
+      fontSize: 12,
       fontFamily: 'IBM Plex Mono',
     },
   },
