@@ -13,16 +13,6 @@ const {
   POINT_CLOUD_STORAGE_BUCKET,
 } = process.env
 
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyA5c_831TTu0gEwH5iZQLwVGaGSfroCY80',
-//   authDomain: 'erudite-tome-279803.firebaseapp.com',
-//   projectId: 'erudite-tome-279803',
-//   storageBucket: 'erudite-tome-279803.appspot.com',
-//   messagingSenderId: '23138885419',
-//   appId: '1:23138885419:web:2d418b1e4e4924162b6f6e',
-//   measurementId: 'G-4W15G9GLH6',
-// }
-
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
   authDomain: FIREBASE_AUTH_DOMAIN,
