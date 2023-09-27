@@ -1,6 +1,13 @@
 import { FlexBox } from '../layout/FlexBox'
-import { CSSObject, Paper, Stack, Typography } from '@mui/material'
+import {
+  CSSObject,
+  Paper,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from '@mui/material'
 import React from 'react'
+import { SectionSubHeaderTypography } from '../styled/SectionHeaderTypography'
 
 type IconTileProps = {
   icon: React.ReactNode
@@ -11,37 +18,41 @@ type IconTileProps = {
   sx?: CSSObject
 }
 
-const IconTile: React.FC<IconTileProps> = props => (
-  <Paper
-    sx={{
-      flex: 1,
-      p: 3,
-      borderRadius: 2,
-      ...props.sx,
-    }}
-  >
-    <FlexBox.RowCenter sx={{ height: '100%' }}>
-      <Stack spacing={1} justifyContent={'flex-start'} height={'100%'}>
-        {props.icon}
-        <Typography
-          variant={'subtitle2'}
-          textAlign={'left'}
-          fontWeight={'bold'}
-          color={props.color}
-        >
-          {props.title}
-        </Typography>
-        <Typography
-          variant={'body1'}
-          color={theme => theme.palette.common.white}
-          textAlign={'left'}
-          sx={{ flex: 1 }}
-        >
-          {props.summary}
-        </Typography>
-      </Stack>
-    </FlexBox.RowCenter>
-  </Paper>
-)
+const IconTile: React.FC<IconTileProps> = props => {
+  const isMobile = useMediaQuery('(max-width:600px)')
+  return (
+    <Paper
+      sx={{
+        flex: 1,
+        p: 3,
+        borderRadius: 2,
+        ...props.sx,
+      }}
+    >
+      <FlexBox.RowCenter sx={{ height: '100%' }}>
+        <Stack spacing={1} justifyContent={'flex-start'} height={'100%'}>
+          {props.icon}
+          <SectionSubHeaderTypography
+            textAlign={'left'}
+            fontWeight={'bold'}
+            color={props.color}
+          >
+            {props.title}
+          </SectionSubHeaderTypography>
+          <Typography
+            variant={isMobile ? 'body2' : 'body1'}
+            color={theme => theme.palette.common.white}
+            sx={{
+              flex: 1,
+              textAlign: 'left',
+            }}
+          >
+            {props.summary}
+          </Typography>
+        </Stack>
+      </FlexBox.RowCenter>
+    </Paper>
+  )
+}
 
 export default IconTile

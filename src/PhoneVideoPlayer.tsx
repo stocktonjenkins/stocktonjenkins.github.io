@@ -1,10 +1,11 @@
 import ReactPlayer from 'react-player'
 import React, { useRef } from 'react'
-import { Box } from '@mui/material'
-import { FlexBox } from './components/layout/FlexBox'
+import { useMediaQuery } from '@mui/material'
 
-const reduce = 0.4
 const PhoneVideoPlayer: React.FC = () => {
+  const isMobile = useMediaQuery('(max-width:600px)')
+  const reduce = isMobile ? 0.15 : 0.4
+
   const size = {
     height: 888 * reduce,
     width: 1920 * reduce,
@@ -18,17 +19,16 @@ const PhoneVideoPlayer: React.FC = () => {
     >
       <img
         style={{
-          width: '100%',
           height: '100%',
           position: 'absolute',
           zIndex: 1,
         }}
         src={'iphone.png'}
       />
-      <div style={{ borderRadius: 100, overflow: 'hidden' }}>
+      <div style={{ borderRadius: isMobile ? 30 : 100, overflow: 'hidden' }}>
         <ReactPlayer
           pau
-          style={{ padding: 16 }}
+          style={{ padding: isMobile ? 7 : 18 }}
           {...size}
           // controls
           // playing

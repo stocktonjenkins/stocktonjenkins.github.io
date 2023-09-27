@@ -1,5 +1,6 @@
 import React from 'react'
 import { Stack, Typography } from '@mui/material'
+import { SectionHeaderTypography } from '../styled/SectionHeaderTypography'
 
 type StatisticProps = {
   stat: string
@@ -9,10 +10,10 @@ type StatisticProps = {
 const Statistic: React.FC<StatisticProps> = props => {
   const { stat, description } = props
   return (
-    <Stack spacing={1}>
-      <Typography variant={'h4'} color={theme => theme.palette.primary.dark}>
+    <Stack spacing={{ sm: 1, xs: 0 }}>
+      <SectionHeaderTypography color={theme => theme.palette.primary.dark}>
         {stat}
-      </Typography>
+      </SectionHeaderTypography>
       <Typography variant={'body1'} color={theme => theme.palette.info.dark}>
         {description}
       </Typography>

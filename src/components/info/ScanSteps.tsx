@@ -1,8 +1,8 @@
 import React from 'react'
-import { Paper, Stack, Typography, useTheme } from '@mui/material'
-import { FlexBox } from '../layout/FlexBox'
+import { Grid, useTheme } from '@mui/material'
 import BoundingCubeIcon from '../icons/BoundingCube.icon'
 import IconTile from '../tile/IconTile'
+import PointrIcon from '../icons/Pointr.icon'
 
 type ScanStep = {
   icon: React.ReactNode
@@ -30,7 +30,7 @@ const steps = (color: string): ScanStep[] => [
       'Set an AR bounding cube around the object to filter out noisy points.',
   },
   {
-    icon: <BoundingCubeIcon color={color} size={'large'} />,
+    icon: <PointrIcon color={color} size={'large'} />,
     title: 'Capture Point Cloud',
     summary:
       'Move the device around all sides of the object to capture point data.',
@@ -41,11 +41,28 @@ const ScanSteps: React.FC = () => {
   const theme = useTheme()
   const color = theme.palette.secondary.main
   return (
-    <Stack justifyContent={'space-between'} direction="row" spacing={12}>
+    <Grid
+      container
+      justifyContent={'space-between'}
+      direction="row"
+      spacing={2}
+    >
       {steps(color).map(step => (
-        <IconTile {...step} color={color} />
+        <Grid
+          item
+          xs={12}
+          sm={3}
+          sx={theme => ({
+            [theme.breakpoints.up('sm')]: {
+              flex: 1,
+              display: 'flex',
+            },
+          })}
+        >
+          <IconTile {...step} color={color} sx={{ flex: 1 }} />
+        </Grid>
       ))}
-    </Stack>
+    </Grid>
   )
 }
 
