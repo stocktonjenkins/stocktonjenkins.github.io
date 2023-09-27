@@ -14,15 +14,14 @@ type IconTileProps = {
 const IconTile: React.FC<IconTileProps> = props => (
   <Paper
     sx={{
-      // width: props.size || 200,
-      // height: props.size || 200,
+      flex: 1,
       p: 3,
       borderRadius: 2,
       ...props.sx,
     }}
   >
     <FlexBox.RowCenter sx={{ height: '100%' }}>
-      <Stack spacing={1} justifyContent={'flex-start'}>
+      <Stack spacing={1} justifyContent={'flex-start'} height={'100%'}>
         {props.icon}
         <Typography
           variant={'subtitle2'}
@@ -36,6 +35,7 @@ const IconTile: React.FC<IconTileProps> = props => (
           variant={'body1'}
           color={theme => theme.palette.common.white}
           textAlign={'left'}
+          sx={{ flex: 1 }}
         >
           {props.summary}
         </Typography>

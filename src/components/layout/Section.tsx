@@ -6,12 +6,16 @@ type SectionProps = {
   variant: 'light' | 'dark' | 'grey'
 } & BoxProps
 
-const Section: React.FC<React.PropsWithChildren<SectionProps>> = props => {
+const Section: React.FC<React.PropsWithChildren<SectionProps>> = (
+  props,
+  ref,
+) => {
   const { children, variant, ...BoxProps } = props
   return (
     <FadeInContent>
       {/*@ts-ignore*/}
       <Box
+        ref={ref}
         //@ts-ignore
         {...BoxProps}
         //@ts-ignore
@@ -30,5 +34,5 @@ const Section: React.FC<React.PropsWithChildren<SectionProps>> = props => {
     </FadeInContent>
   )
 }
-
-export default Section
+// @ts-ignore
+export default React.forwardRef(Section) as typeof Section

@@ -1,6 +1,5 @@
 import {
   AppBar,
-  Box,
   Button,
   Slide,
   Stack,
@@ -22,7 +21,14 @@ const HideOnScroll: React.FC<React.PropsWithChildren> = props => {
   )
 }
 
-const NavBar: React.FC = () => {
+type NavBarProps = {
+  onClickProject: () => void
+  onClickData: () => void
+  onClickAbout: () => void
+}
+
+const NavBar: React.FC<NavBarProps> = props => {
+  const { onClickProject, onClickAbout, onClickData } = props
   const theme = useTheme()
   return (
     <>
@@ -51,10 +57,16 @@ const NavBar: React.FC = () => {
           >
             <img src={'pointr.io.png'} style={{ width: 175 }} />
             <Stack spacing={4} direction={'row'}>
-              <Button color={'info'}>Project</Button>
-              <Button color={'info'}>Data</Button>
-              <Button color={'info'}>About</Button>
-              <Button variant={'outlined'}>Contact</Button>
+              <Button color={'info'} onClick={onClickProject}>
+                Project
+              </Button>
+              <Button color={'info'} onClick={onClickData}>
+                Data
+              </Button>
+              <Button variant={'outlined'} onClick={onClickAbout}>
+                About
+              </Button>
+              {/*<Button variant={'outlined'}>Contact</Button>*/}
             </Stack>
           </Toolbar>
         </AppBar>

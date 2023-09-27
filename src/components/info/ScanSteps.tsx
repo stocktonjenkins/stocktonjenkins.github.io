@@ -13,23 +13,27 @@ type ScanStep = {
 const steps = (color: string): ScanStep[] => [
   {
     icon: <BoundingCubeIcon color={color} size={'large'} />,
-    title: 'Set Bounding Cube',
-    summary: 'Explanation of the step with just a little more detail.',
+    title: 'Select Class',
+    summary:
+      'Choose the class of the object you will scan. Find an object that matches the selected class.',
+  },
+  {
+    icon: <BoundingCubeIcon color={color} size={'large'} />,
+    title: 'Capture Images',
+    summary:
+      'Use the camera shutter to take pictures of the object from multiple angles.',
   },
   {
     icon: <BoundingCubeIcon color={color} size={'large'} />,
     title: 'Set Bounding Cube',
-    summary: 'Explanation of the step with just a little more detail.',
+    summary:
+      'Set an AR bounding cube around the object to filter out noisy points.',
   },
   {
     icon: <BoundingCubeIcon color={color} size={'large'} />,
-    title: 'Set Bounding Cube',
-    summary: 'Explanation of the step with just a little more detail.',
-  },
-  {
-    icon: <BoundingCubeIcon color={color} size={'large'} />,
-    title: 'Set Bounding Cube',
-    summary: 'Explanation of the step with just a little more detail.',
+    title: 'Capture Point Cloud',
+    summary:
+      'Move the device around all sides of the object to capture point data.',
   },
 ]
 
