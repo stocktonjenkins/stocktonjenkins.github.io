@@ -1,5 +1,5 @@
-import { Button, Stack } from '@mui/material'
-import PhoneVideoPlayer from '../PhoneVideoPlayer'
+import { Button, Stack, useMediaQuery } from '@mui/material'
+import PhoneVideoPlayer from '../components/video/PhoneVideoPlayer'
 import React from 'react'
 import {
   SectionHeaderTypography,
@@ -12,13 +12,18 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = props => {
   const { onExamplesClick } = props
+  const isLgOrAbove = useMediaQuery('(min-width: 1280px)')
   return (
     <Stack
-      direction={'column'}
-      spacing={{ lg: 12, xs: 4 }}
+      direction={isLgOrAbove ? 'row' : 'column'}
+      spacing={{ lg: 12, md: 8, xs: 4 }}
       sx={theme => ({
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('lg')]: {
           minHeight: '75vh',
+          flexDirection: 'row',
+        },
+        [theme.breakpoints.down('lg')]: {
+          flexDirection: 'column',
         },
       })}
       alignItems={'center'}
@@ -34,7 +39,12 @@ const Header: React.FC<HeaderProps> = props => {
           variant={'subtitle1'}
           color={theme => theme.palette.info.dark}
         >
-          Capture point cloud data for common objects of varying size on iPhone.
+          The current state of 3D deep learning is challenging due to the lack
+          of large-scale, real-world data set. To promote both deeper and
+          broader research into 3D computer vision, we introduce Pointr.
+          <br />
+          Pointr is a growing multi-modal dataset with point cloud and images
+          collected via LiDAR on iPhone.
         </SectionSubHeaderTypography>
         <Stack direction={'row'} spacing={2}>
           <Button variant={'outlined'} onClick={onExamplesClick}>

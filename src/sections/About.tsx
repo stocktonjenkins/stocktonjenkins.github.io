@@ -81,11 +81,11 @@ const About: React.FC = () => {
             color={theme => theme.palette.info.dark}
             variant={'body1'}
           >
-            Stockton has had tremendous success at every academic institution
-            where has studied. This is due to his passion for learning and
-            problem solving, as well as his incredible work ethic. After
-            spending a few years away from school, Stockton is now looking to
-            maximize his education by pursuing a graduate degree.
+            Stockton has had tremendous academic success throughout his life.
+            This is due to his passion for learning and problem solving, as well
+            as his incredible work ethic. After spending a few years away from
+            school, Stockton is now looking to maximize his education by
+            pursuing a graduate degree.
             <br />
             <br />
             In his spare time, Stockton loves to play a number of musical
@@ -107,7 +107,6 @@ const About: React.FC = () => {
                   xs={12}
                   sx={theme => ({
                     [theme.breakpoints.up('sm')]: {
-                      flex: 1,
                       display: 'flex',
                     },
                   })}

@@ -1,12 +1,13 @@
 import { Button, Stack, Box } from '@mui/material'
 import ScanSteps from '../components/info/ScanSteps'
-import PhoneVideoPlayer from '../PhoneVideoPlayer'
+import PhoneVideoPlayer from '../components/video/PhoneVideoPlayer'
 import { ChevronRight } from '@mui/icons-material'
 import { FlexBox } from '../components/layout/FlexBox'
 import React from 'react'
 import {
   SectionHeaderTypography,
   SectionSubHeaderTypography,
+  SectionTertiaryTypography,
 } from '../components/styled/SectionHeaderTypography'
 
 const How: React.FC = () => {
@@ -14,12 +15,17 @@ const How: React.FC = () => {
     <FlexBox.ColCenter>
       <Stack spacing={{ lg: 8, sm: 2, xs: 2 }}>
         <Stack spacing={{ lg: 4, sm: 2, xs: 2 }} textAlign={'center'}>
+          <SectionTertiaryTypography
+            fontWeight={'bold'}
+            color={theme => theme.palette.secondary.main}
+          >
+            How it's done
+          </SectionTertiaryTypography>
           <SectionHeaderTypography
             fontWeight={'bold'}
             color={theme => theme.palette.info.main}
           >
-            {/*Scan objects quickly with iOS's AR & LiDAR technology*/}
-            Scan objects quickly with iOS AR & LiDAR technology
+            Scan objects quickly with AR & LiDAR technology in iOS
           </SectionHeaderTypography>
           <SectionSubHeaderTypography color={theme => theme.palette.info.dark}>
             The Pointr app leverages Apple hardware and software to capture a

@@ -57,9 +57,9 @@ function App() {
       <Section variant={'light'} {...shared('reg')} ref={dataRef}>
         <PointCloudViewer />
       </Section>
-      <Section variant={'grey'} {...shared('reg')}>
-        <Comparison />
-      </Section>
+      {/*<Section variant={'grey'} {...shared('reg')}>*/}
+      {/*  <Comparison />*/}
+      {/*</Section>*/}
       <Section ref={aboutRef} variant={'dark'} {...shared('lg')}>
         <About />
       </Section>
