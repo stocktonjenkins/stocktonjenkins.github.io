@@ -17,7 +17,7 @@ import { GET_SCAN_STATS } from '../../graphql/query/GetScanStats'
 const formatLabel = (label: string): string => {
   switch (label) {
     case 'numPointClouds':
-      return 'Captured Point clouds'
+      return 'Captured Point Clouds'
     case 'numImages':
       return 'Captured Images'
     case 'numClasses':
@@ -68,8 +68,8 @@ const PointCloudViewer: React.FC = () => {
               sx={{ fontStyle: 'italic' }}
               color={theme => theme.palette.grey['400']}
             >
-              Use the search bar to view examples point clouds of different
-              classes we have collected thus far.
+              Use the search bar to view point clouds of different classes we
+              have collected thus far.
             </Typography>
           </ScreenController.LargeScreen>
         </Stack>
@@ -81,11 +81,16 @@ const PointCloudViewer: React.FC = () => {
         <ScreenController.Mobile width={'100%'}>
           <Typography
             variant={'body2'}
-            sx={{ fontStyle: 'italic' }}
+            sx={theme => ({
+              fontStyle: 'italic',
+              [theme.breakpoints.only('xs')]: {
+                textAlign: 'center',
+              },
+            })}
             color={theme => theme.palette.grey['400']}
           >
-            Use the search bar to view examples point clouds of different
-            classes we have collected thus far.
+            Use the search bar to view point clouds of different classes we have
+            collected thus far.
           </Typography>
         </ScreenController.Mobile>
       </Grid>

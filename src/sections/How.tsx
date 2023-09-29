@@ -19,13 +19,13 @@ const How: React.FC = () => {
             fontWeight={'bold'}
             color={theme => theme.palette.secondary.main}
           >
-            How it's done
+            How It's Done
           </SectionTertiaryTypography>
           <SectionHeaderTypography
             fontWeight={'bold'}
             color={theme => theme.palette.info.main}
           >
-            Scan objects quickly with AR & LiDAR technology in iOS
+            Scan Objects Quickly With AR & LiDAR Technology
           </SectionHeaderTypography>
           <SectionSubHeaderTypography color={theme => theme.palette.info.dark}>
             The Pointr app leverages Apple hardware and software to capture a
@@ -38,7 +38,7 @@ const How: React.FC = () => {
         </Stack>
         <Stack spacing={2} justifyContent={'center'} alignItems={'center'}>
           <PhoneVideoPlayer />
-          <Button endIcon={<ChevronRight />}>See this example</Button>
+          {/*<Button endIcon={<ChevronRight />}>See this example</Button>*/}
         </Stack>
       </Stack>
     </FlexBox.ColCenter>

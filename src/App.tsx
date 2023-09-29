@@ -7,7 +7,6 @@ import About from './sections/About'
 import How from './sections/How'
 import Header from './sections/Header'
 import WhatIs from './sections/WhatIs'
-import Comparison from './sections/Comparison'
 
 function App() {
   const projectRef = useRef<HTMLDivElement>()
@@ -15,7 +14,8 @@ function App() {
   const aboutRef = useRef<HTMLDivElement>()
 
   const px = (lgvar: 'lg' | 'reg'): BoxProps['px'] => ({
-    lg: lgvar === 'lg' ? 24 : 12,
+    xl: lgvar === 'lg' ? 18 : 12,
+    lg: lgvar === 'lg' ? 12 : 8,
     xs: 6,
   })
   const py: BoxProps['py'] = {

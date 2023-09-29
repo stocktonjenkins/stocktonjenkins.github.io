@@ -12,18 +12,13 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = props => {
   const { onExamplesClick } = props
-  const isLgOrAbove = useMediaQuery('(min-width: 1280px)')
   return (
     <Stack
-      direction={isLgOrAbove ? 'row' : 'column'}
+      direction={{ xl: 'row', xs: 'column' }}
       spacing={{ lg: 12, md: 8, xs: 4 }}
       sx={theme => ({
         [theme.breakpoints.up('lg')]: {
           minHeight: '75vh',
-          flexDirection: 'row',
-        },
-        [theme.breakpoints.down('lg')]: {
-          flexDirection: 'column',
         },
       })}
       alignItems={'center'}
@@ -33,18 +28,18 @@ const Header: React.FC<HeaderProps> = props => {
           fontWeight={'bold'}
           color={theme => theme.palette.info.main}
         >
-          Collecting point cloud data has never been easier.
+          Pointr: A Project to Scale 3D Computer Vision.
         </SectionHeaderTypography>
         <SectionSubHeaderTypography
           variant={'subtitle1'}
           color={theme => theme.palette.info.dark}
         >
-          The current state of 3D deep learning is challenging due to the lack
-          of large-scale, real-world data set. To promote both deeper and
-          broader research into 3D computer vision, we introduce Pointr.
+          The current state of 3D computer vision is challenging due to the lack
+          of a large-scale, real-world dataset. In attempt to scale 3D computer
+          vision in terms of data and model size, we introduce <b>Pointr</b>.
           <br />
-          Pointr is a growing multi-modal dataset with point cloud and images
-          collected via LiDAR on iPhone.
+          <b>Pointr</b> is a growing multi-modal dataset with point cloud and
+          images collected via LiDAR on an AR-based iOS app.
         </SectionSubHeaderTypography>
         <Stack direction={'row'} spacing={2}>
           <Button variant={'outlined'} onClick={onExamplesClick}>

@@ -7,6 +7,7 @@ import PointCloud from './PointCloud'
 import { ClassLabel } from '../../graphql/__generated__/graphql'
 import CircularProgress from '@mui/material/CircularProgress'
 import { usePointCloudContainerLogic } from './PointCloudContainer.logic'
+import { ScreenController } from '../layout/ScreenController'
 
 const PointCloudContainer: React.FC = props => {
   const theme = useTheme()
@@ -23,6 +24,29 @@ const PointCloudContainer: React.FC = props => {
       loadingObjFile,
     },
   } = usePointCloudContainerLogic()
+
+  const SelectedClass = selectedClass && (
+    <Stack>
+      <Typography color={theme.palette.secondary.main} fontWeight={'bold'}>
+        {selectedClass.label}
+      </Typography>
+      <Typography
+        variant={'body2'}
+        color={theme.palette.secondary.main}
+        fontWeight={'bold'}
+      >
+        Captured Clouds: {selectedClass?.numClouds}
+      </Typography>
+      <Typography
+        variant={'body2'}
+        color={theme.palette.secondary.main}
+        fontWeight={'bold'}
+      >
+        Captured Images: {selectedClass.numImages}
+      </Typography>
+    </Stack>
+  )
+
   return (
     <Box
       sx={{
@@ -38,10 +62,12 @@ const PointCloudContainer: React.FC = props => {
       />
       {loadingPointCloud && (
         <Box
-          sx={{
+          style={{
             position: 'absolute',
-            top: '45%',
-            left: '45%',
+            justifyContent: 'center',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
           }}
         >
           <Stack alignContent={'center'} spacing={2}>
@@ -69,32 +95,9 @@ const PointCloudContainer: React.FC = props => {
         }}
       >
         <FlexBox.RowBetween px={4}>
-          {selectedClass ? (
-            <Stack>
-              <Typography
-                color={theme.palette.secondary.main}
-                fontWeight={'bold'}
-              >
-                {selectedClass.label}
-              </Typography>
-              <Typography
-                variant={'body2'}
-                color={theme.palette.secondary.main}
-                fontWeight={'bold'}
-              >
-                Captured Clouds: {selectedClass?.numClouds}
-              </Typography>
-              <Typography
-                variant={'body2'}
-                color={theme.palette.secondary.main}
-                fontWeight={'bold'}
-              >
-                Captured Images: {selectedClass.numImages}
-              </Typography>
-            </Stack>
-          ) : (
-            <Box />
-          )}
+          <ScreenController.LargeScreen>
+            {selectedClass ? SelectedClass : <Box />}
+          </ScreenController.LargeScreen>
           <SearchBar<ClassLabel>
             loading={false}
             options={classes}
@@ -102,6 +105,16 @@ const PointCloudContainer: React.FC = props => {
             handleUpdateSearchTerm={setSearchTerm}
           />
         </FlexBox.RowBetween>
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 16,
+          left: 32,
+          zIndex: 1,
+        }}
+      >
+        <ScreenController.Mobile>{SelectedClass}</ScreenController.Mobile>
       </Box>
     </Box>
   )

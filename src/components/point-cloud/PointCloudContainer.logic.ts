@@ -9,8 +9,6 @@ import {
 import { useLazyQuery } from '@apollo/client'
 import { GET_CLASSES } from '../../graphql/query/GetClassLabels'
 import { GET_POINT_CLOUDS_BY_CLASS_LABEL } from '../../graphql/query/GetPointCloudsByClassLabel'
-import { useLoader } from '@react-three/fiber'
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { PointCloudHelpers } from './point-cloud.helpers'
 
 export const usePointCloudContainerLogic = () => {
@@ -18,7 +16,7 @@ export const usePointCloudContainerLogic = () => {
   const [searchTerm, setSearchTerm] = useState<string>()
   const [selectedClass, setSelectedClass] = useState<ClassLabel>()
   const [loadingObjFile, setLoadingObjFile] = useState(false)
-  const [getClassLabels, { data, loading }] = useLazyQuery<
+  const [getClassLabels, { data }] = useLazyQuery<
     GetClassLabelsQuery,
     GetClassLabelsQueryVariables
   >(GET_CLASSES, {
@@ -55,6 +53,15 @@ export const usePointCloudContainerLogic = () => {
   }, [searchTerm])
 
   useEffect(() => {
+    // Have a default value
+    getClassLabels({
+      variables: { searchTerm: 'Guitar' },
+    }).then(res => {
+      setSelectedClass(res.data?.classLabels[0] as ClassLabel)
+    })
+  }, [])
+
+  useEffect(() => {
     if (selectedClass) {
       getPointCloudsByClassLabel({
         variables: {
@@ -74,14 +81,6 @@ export const usePointCloudContainerLogic = () => {
   const classes = searchTerm?.length
     ? ((data?.classLabels || []) as ClassLabel[])
     : []
-
-  // useEffect(() => {
-  //   ;(async () => {
-  //     const response = await fetch('clouds/test.obj')
-  //     const blob = await response.blob()
-  //     PointCloudHelpers.loadObjFile(blob).then(setCloud)
-  //   })()
-  // }, [])
 
   //@ts-ignore
   const geometry = cloud?.children[0]?.geometry

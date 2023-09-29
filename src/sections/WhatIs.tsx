@@ -1,4 +1,4 @@
-import { ImageListItem, Box, Stack, Typography, Grid } from '@mui/material'
+import { ImageListItem, Stack, Grid, Typography } from '@mui/material'
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import {
@@ -20,24 +20,29 @@ const WhatIs: React.FC = () => {
       })}
     >
       <Grid item lg={6} sm={12} xs={12}>
-        <Carousel
-          // navButtonsAlwaysVisible={isMobile}
-          interval={6000}
-        >
+        <Carousel interval={10000}>
           <ImageListItem
             key={'model'}
             sx={{
               height: '100% !important',
+              textAlign: 'center',
             }}
           >
+            <Typography color={theme => theme.palette.info.dark}>
+              Figure: Log scale comparison of model sizes across modalities
+            </Typography>
             <img src={'model_size.png'} />
           </ImageListItem>
           <ImageListItem
             key={'dataset'}
             sx={{
               height: '100% !important',
+              textAlign: 'center',
             }}
           >
+            <Typography color={theme => theme.palette.info.dark}>
+              Figure: Log scale comparison of dataset sizes across modalities
+            </Typography>
             <img src={'dataset_size.png'} />
           </ImageListItem>
         </Carousel>
@@ -48,20 +53,22 @@ const WhatIs: React.FC = () => {
             fontWeight={'bold'}
             color={theme => theme.palette.secondary.main}
           >
-            What is the pointr project?
+            What Is The Pointr Project?
           </SectionTertiaryTypography>
           <SectionHeaderTypography fontWeight={'bold'}>
-            The 3D data desert is real.
+            The 3D Data Desert Is Real.
           </SectionHeaderTypography>
           <SectionSubHeaderTypography color={theme => theme.palette.info.dark}>
             3D computer vision lags behind other applications of deep learning
-            due to the expensive cost of collecting data. For this reason,
-            dataset and model sizes are an order of magnitude smaller for point
-            clouds, compared to images and language.
+            due to the time-consuming nature of collecting data. For this
+            reason, dataset and model sizes are an order of magnitude smaller
+            for 3D, compared to other popular modalities (i.e. image and
+            language).
             <br />
             <br />
-            The pointr project aims to build tools that scale the size 3D
-            datasets and models at a much faster rate than done previously.
+            The <b>Pointr</b> project aims to build tools that scale the size of
+            3D datasets and 3D vision models at a much faster rate than done
+            previously.
           </SectionSubHeaderTypography>
         </Stack>
       </Grid>

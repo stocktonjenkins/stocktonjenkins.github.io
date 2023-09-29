@@ -1,5 +1,5 @@
 import ReactPlayer from 'react-player'
-import React, { useRef } from 'react'
+import React from 'react'
 import { useMediaQuery } from '@mui/material'
 
 const PhoneVideoPlayer: React.FC = () => {
@@ -22,19 +22,21 @@ const PhoneVideoPlayer: React.FC = () => {
           height: '100%',
           position: 'absolute',
           zIndex: 1,
+          pointerEvents: 'none',
+          width: '100%',
         }}
         src={'iphone.png'}
       />
       <div style={{ borderRadius: isMobile ? 30 : 100, overflow: 'hidden' }}>
         <ReactPlayer
-          pau
-          style={{ padding: isMobile ? 7 : 18 }}
+          style={{ padding: isMobile ? 4 : 18 }}
           {...size}
-          // controls
-          // playing
+          playing
+          controls={isMobile}
           loop
-          url="example.mp4"
+          url="example-guitar-med.mp4"
           muted
+          playsinline
         />
       </div>
     </div>

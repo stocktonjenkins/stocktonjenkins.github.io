@@ -9,37 +9,40 @@ import {
 } from '@mui/material'
 import IconTile from '../components/tile/IconTile'
 import React from 'react'
-import BoundingCubeIcon from '../components/icons/BoundingCube.icon'
 import { NavigationHelpers } from '../helpers/navigation.helpers'
 import { MailOutline } from '@mui/icons-material'
 import {
   SectionHeaderTypography,
-  SectionSubHeaderTypography,
   SectionTertiaryTypography,
 } from '../components/styled/SectionHeaderTypography'
+import GradCapIcon from '../components/icons/GradCap.icon'
+import PublishedIcon from '../components/icons/Published.icon'
+import ResearchIcon from '../components/icons/Research.icon'
+import CodeIcon from '../components/icons/Code.icon'
 
 const stockton = (color: string) => [
   {
-    icon: <BoundingCubeIcon color={color} size={'large'} />,
+    icon: <GradCapIcon color={color} size={'large'} />,
     title: '4.0 GPA & Summa Cum Laude',
     summary:
       'Graduated Summa Cum Laude from Brigham Young University with a B.S in Computer Science in 2021.',
   },
   {
-    icon: <BoundingCubeIcon color={color} size={'large'} />,
+    icon: <PublishedIcon color={color} size={'large'} />,
     title: 'Published Papers',
-    summary: `Three peer reviewed papers in several notable conferences, including AAAi and WACV.`,
+    summary: `Three peer reviewed papers (and a fourth currently under review) in several notable conferences, including AAAi and WACV.`,
   },
   {
-    icon: <BoundingCubeIcon color={color} size={'large'} />,
+    icon: <ResearchIcon color={color} size={'large'} />,
     title: 'Research & Academic Interests',
     summary:
-      'Scaling 3D deep learning and its applications, including data; foundational 3D models; mobile-friendly algorithms and models',
+      'Scaling 3D computer vision and its applications, including data; foundational 3D models; mobile-friendly algorithms and models',
   },
   {
-    icon: <BoundingCubeIcon color={color} size={'large'} />,
+    icon: <CodeIcon color={color} size={'large'} />,
     title: 'Experienced Engineer',
-    summary: 'Explanation of the step with just a little more detail.',
+    summary:
+      'Experienced in Python, TypeScript, Java, Swift, and SQL. Knowledgeable with tools & frameworks like Pytorch, Django, ARKit/RealityKit, React/React Native, and Google Cloud Platform.',
   },
 ]
 
@@ -56,7 +59,7 @@ const About: React.FC = () => {
               fontWeight={'bold'}
               color={theme => theme.palette.info.main}
             >
-              Get to know the author
+              Get To Know The Author
             </SectionHeaderTypography>
             <SectionTertiaryTypography
               variant={'subtitle2'}
@@ -81,15 +84,16 @@ const About: React.FC = () => {
             color={theme => theme.palette.info.dark}
             variant={'body1'}
           >
-            Stockton has had tremendous academic success throughout his life.
-            This is due to his passion for learning and problem solving, as well
-            as his incredible work ethic. After spending a few years away from
-            school, Stockton is now looking to maximize his education by
-            pursuing a graduate degree.
+            Stockton graduated with a 4.0 (Summa Cum Laude) from Brigham Young
+            University with a Bachelor's degree in Computer Science. During his
+            time at BYU, Stockton was apart of <i>METAL</i> labs, working on 3D
+            computer vision models and their applications. Over the past several
+            years, Stockton has also been involved in building a successful AI
+            startup.
             <br />
             <br />
             In his spare time, Stockton loves to play a number of musical
-            instruments and spend time in the great out doors. He married the
+            instruments and spend time in the great outdoors. He married the
             love of his life, Katherine, in November of 2022.
           </Typography>
           <Box>
@@ -101,6 +105,7 @@ const About: React.FC = () => {
             <Grid container spacing={2}>
               {stockton(color).map(info => (
                 <Grid
+                  key={info.title}
                   item
                   lg={6}
                   sm={12}

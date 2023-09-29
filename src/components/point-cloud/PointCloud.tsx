@@ -1,5 +1,5 @@
 import React from 'react'
-import { Canvas, useLoader } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import CameraOrbitControls from './CameraOrbitControls'
 
 type PointCloudProps = {

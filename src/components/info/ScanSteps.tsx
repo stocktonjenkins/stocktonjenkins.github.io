@@ -21,28 +21,28 @@ const steps = (color: string): ScanStep[] => [
       'Choose the class of the object you will scan. Find an object that matches the selected class.',
   },
   {
+    icon: <BoundingCubeIcon color={color} size={'large'} />,
+    title: 'Set Bounding Cube',
+    summary:
+      'Use AR to set a bounding cube around the object in order to filter out noisy points.',
+  },
+  {
     icon: <CameraIcon color={color} size={'large'} />,
     title: 'Capture Images',
     summary:
       'Use the camera shutter to take pictures of the object from multiple angles.',
   },
   {
-    icon: <BoundingCubeIcon color={color} size={'large'} />,
-    title: 'Set Bounding Cube',
-    summary:
-      'Set an AR bounding cube around the object to filter out noisy points.',
-  },
-  {
     icon: <PointrIcon color={color} size={'large'} />,
     title: 'Scan Point Cloud',
     summary:
-      'Move the device around all sides of the object to capture point data.',
+      'Move the device around all sides of the object to capture points.',
   },
   {
     icon: <StorageIcon color={color} size={'large'} />,
     title: 'Upload Data',
     summary:
-      'Upload the captured point cloud and images to a remote server, adding to the pointr dataset.',
+      'Upload the captured point cloud and images to a remote server, adding to the Pointr dataset.',
   },
 ]
 
@@ -58,6 +58,7 @@ const ScanSteps: React.FC = () => {
     >
       {steps(color).map(step => (
         <Grid
+          key={step.title}
           item
           xs={12}
           sm={3}
