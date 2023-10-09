@@ -27,7 +27,12 @@ const PhoneVideoPlayer: React.FC = () => {
         }}
         src={'iphone.png'}
       />
-      <div style={{ borderRadius: isMobile ? 30 : 100, overflow: 'hidden' }}>
+      <div
+        style={{
+          borderRadius: isMobile ? 30 : 100,
+          overflow: 'hidden',
+        }}
+      >
         <ReactPlayer
           style={{ padding: isMobile ? 4 : 18 }}
           {...size}

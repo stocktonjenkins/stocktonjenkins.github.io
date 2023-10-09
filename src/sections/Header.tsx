@@ -38,8 +38,8 @@ const Header: React.FC<HeaderProps> = props => {
           of a large-scale, real-world dataset. In attempt to scale 3D computer
           vision in terms of data and model size, we introduce <b>Pointr</b>.
           <br />
-          <b>Pointr</b> is a growing multi-modal dataset with point cloud and
-          images collected via LiDAR on an AR-based iOS app.
+          <b>Pointr</b> is a growing multi-modal dataset of common objects
+          captured in their natural context via LiDAR on an AR-based iOS app.
         </SectionSubHeaderTypography>
         <Stack direction={'row'} spacing={2}>
           <Button variant={'outlined'} onClick={onExamplesClick}>

@@ -45,20 +45,24 @@ export const usePointCloudContainerLogic = () => {
   }
 
   useEffect(() => {
-    if (searchTerm?.length) {
-      getClassLabels({
-        variables: { searchTerm },
-      })
-    }
+    getClassLabels({
+      variables: { searchTerm: searchTerm || '' },
+    })
   }, [searchTerm])
 
   useEffect(() => {
     // Have a default value
     getClassLabels({
       variables: { searchTerm: 'Guitar' },
-    }).then(res => {
-      setSelectedClass(res.data?.classLabels[0] as ClassLabel)
     })
+      .then(res => {
+        setSelectedClass(res.data?.classLabels[0] as ClassLabel)
+      })
+      .then(() => {
+        getClassLabels({
+          variables: { searchTerm: '' },
+        })
+      })
   }, [])
 
   useEffect(() => {
@@ -78,9 +82,7 @@ export const usePointCloudContainerLogic = () => {
     }
   }, [selectedClass])
 
-  const classes = searchTerm?.length
-    ? ((data?.classLabels || []) as ClassLabel[])
-    : []
+  const classes = (data?.classLabels || []) as ClassLabel[]
 
   //@ts-ignore
   const geometry = cloud?.children[0]?.geometry

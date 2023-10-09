@@ -89,7 +89,9 @@ const About: React.FC = () => {
             time at BYU, Stockton was apart of <i>METAL</i> labs, working on 3D
             computer vision models and their applications. Over the past several
             years, Stockton has also been involved in building a successful AI
-            startup.
+            startup. He now desires to sharpen his critical thinking skills and
+            ability to solve difficult problems by pursuing a PhD in computer
+            science.
             <br />
             <br />
             In his spare time, Stockton loves to play a number of musical
