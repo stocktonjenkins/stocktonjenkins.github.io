@@ -162,11 +162,22 @@ const PUBLICATIONS: Paper[] = [
 interface Job {
   role:    string
   org:     string
+  orgHref?: string
   period:  string
   bullets: string[]
 }
 
 const EXPERIENCE: Job[] = [
+  {
+    role:    'Founding Engineer',
+    org:     'Bips',
+    orgHref: 'https://www.trybips.com/',
+    period:  'Sep 2025 – Present',
+    bullets: [
+      'Built an AI-powered financial platform that automates bookkeeping and provides a virtual CFO for small business owners and LLCs.',
+      'Designed and implemented the full-stack system for ingesting and analyzing business financials, powering an AI assistant that surfaces cash flow insights and recommendations through natural language.',
+    ],
+  },
   {
     role:    'Full-Stack & Machine Learning Engineer',
     org:     'Delicious AI',
@@ -678,7 +689,9 @@ const JobRow: React.FC<{ job: Job }> = ({ job }) => (
           color:      C.textSec,
           marginLeft: '10px',
         }}>
-          — {job.org}
+          — {job.orgHref
+            ? <a href={job.orgHref} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', borderBottom: `1px solid ${C.border}` }}>{job.org}</a>
+            : job.org}
         </span>
       </div>
       <span style={{
