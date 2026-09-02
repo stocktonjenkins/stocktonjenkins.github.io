@@ -41,9 +41,7 @@ const BIO = {
      agent memory, and building systems that reason efficiently over large knowledge sources.`,
     `Prior to my PhD, I received my B.S. in Computer Science <em>Summa Cum Laude</em>
      (4.0 GPA) from Brigham Young University, where I was a member of the
-     <strong>METAL Lab</strong> working on 3D computer vision. I have also spent several
-     years as a full-stack and ML engineer at <strong>Delicious AI</strong>, building
-     3D sales intelligence and vision-language systems for retail.`,
+     <strong>METAL Lab</strong> working on 3D computer vision.`,
   ],
 }
 
@@ -71,7 +69,7 @@ const RESEARCH_INTERESTS = [
 ]
 
 const NEWS: { date: string; text: string }[] = [
-  { date: 'Apr 2026', text: '<strong>GRASP</strong> submitted to <strong>COLM 2026</strong> — under review. Graph agentic retrieval achieving 40–50% fewer tokens than IRCoT+HippoRAG2 on multi-hop QA.' },
+  { date: 'Apr 2026', text: '<strong>GRASP</strong> submitted to <strong>ACL 2026</strong> — under submission. Graph agentic retrieval achieving 40–50% fewer tokens than IRCoT+HippoRAG2 on multi-hop QA.' },
   { date: 'Jan 2026', text: 'Joined the <strong>HuLab</strong> (advised by Prof. Junjie Hu) at UW–Madison.' },
   { date: 'Sep 2025', text: 'Joined <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer"><strong>R2I</strong></a> — a UW–Madison student organization dedicated to manifesting research into impactful products.' },
   { date: 'Jul 2025', text: 'My wife Katherine and I welcomed our first baby boy into the world. 🎉' },
@@ -100,7 +98,7 @@ const PUBLICATIONS: Paper[] = [
   {
     title:   'GRASP: Graph Agentic Search over Propositions for Multihop Question Answering',
     authors: [ME, 'Junjie Hu', 'Ramya Vinayak'],
-    venue:   'COLM',
+    venue:   'ACL',
     year:    '2026',
     abstract: 'GRASP is an agentic retrieval system that jointly optimizes accuracy and token efficiency for multi-hop QA. It decomposes queries into dependency-aware plans, scales sub-agents to question complexity, and retrieves via a novel three-layer hierarchical graph of entities, propositions, and passages. GRASP achieves highest QA accuracy on MuSiQue and 2WikiMultihopQA while using 40–50% fewer tokens than IRCoT+HippoRAG2.',
     links: [
@@ -595,7 +593,7 @@ const PaperCard: React.FC<{ paper: Paper }> = ({ paper }) => (
     <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '10px' }}>
       <Pill>{paper.venue} {paper.year}</Pill>
       {paper.underReview && (
-        <Pill>Under Review</Pill>
+        <Pill>Under Submission</Pill>
       )}
     </div>
 
