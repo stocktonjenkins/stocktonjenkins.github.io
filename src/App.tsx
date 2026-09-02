@@ -167,23 +167,20 @@ interface Job {
 
 const EXPERIENCE: Job[] = [
   {
-    role:    'Founding Engineer',
-    org:     'Bips',
-    orgHref: 'https://www.trybips.com/',
-    period:  'Sep 2025 – Present',
+    role:    'Research Assistant',
+    org:     'HuLab, University of Wisconsin–Madison',
+    period:  '2025 – Present',
     bullets: [
-      'Built an AI-powered financial platform that automates bookkeeping and provides a virtual CFO for small business owners and LLCs.',
-      'Designed and implemented the full-stack system for ingesting and analyzing business financials, powering an AI assistant that surfaces cash flow insights and recommendations through natural language.',
+      'Advised by Prof. Junjie Hu; research focuses on LLM agents, agentic retrieval and search, agent memory, and systems that reason efficiently over large knowledge sources.',
+      'Developed GRASP, a graph agentic retrieval system that decomposes multi-hop queries into dependency-aware plans and retrieves over a three-layer hierarchical graph of entities, propositions, and passages — achieving state-of-the-art accuracy on MuSiQue and 2WikiMultihopQA while using 40–50% fewer tokens than IRCoT+HippoRAG2.',
     ],
   },
   {
-    role:    'Full-Stack & Machine Learning Engineer',
-    org:     'Delicious AI',
-    period:  'Feb 2020 – Present',
+    role:    'Head Teaching Assistant',
+    org:     'CS 544, University of Wisconsin–Madison',
+    period:  '2024 – 2026',
     bullets: [
-      'Built a 3D sales intelligence platform using LiDAR, edge inference, and computer vision to drive real-time retail analytics.',
-      'Developed product image classification and vision-language systems for fine-grained retail SKU recognition.',
-      'Led full-stack development across Python (PyTorch, Django, FastAPI), TypeScript (React/React Native), and Google Cloud Platform.',
+      'Developed, deployed, and maintained automated grading infrastructure for thousands of undergraduate students across several semesters.',
     ],
   },
   {
