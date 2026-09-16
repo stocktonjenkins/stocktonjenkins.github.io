@@ -97,7 +97,7 @@ const ME = 'J. Stockton Jenkins'
 const PUBLICATIONS: Paper[] = [
   {
     title:   'GRASP: Graph Agentic Search over Propositions for Multihop Question Answering',
-    authors: [ME, 'Junjie Hu', 'Ramya Vinayak'],
+    authors: [ME, 'Ramya Vinayak', 'Junjie Hu'],
     venue:   'ACL',
     year:    '2026',
     abstract: 'GRASP is an agentic retrieval system that jointly optimizes accuracy and token efficiency for multi-hop QA. It decomposes queries into dependency-aware plans, scales sub-agents to question complexity, and retrieves via a novel three-layer hierarchical graph of entities, propositions, and passages. GRASP achieves highest QA accuracy on MuSiQue and 2WikiMultihopQA while using 40–50% fewer tokens than IRCoT+HippoRAG2.',
