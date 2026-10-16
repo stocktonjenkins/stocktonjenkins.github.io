@@ -3,45 +3,48 @@ import { ReactComponent as UWCrest } from './uw-crest.svg'
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
 const C = {
-  bg:          '#f2f1ed',
-  bgAlt:       '#ebeae5',
-  bgCard:      '#e6e5e0',
+  bg: '#f2f1ed',
+  bgAlt: '#ebeae5',
+  bgCard: '#e6e5e0',
   bgCardHover: '#dddcd7',
-  text:        '#26251e',
-  textSec:     'rgba(38,37,30,0.55)',
-  textMuted:   'rgba(38,37,30,0.38)',
-  accent:      '#f54e00',
+  text: '#26251e',
+  textSec: 'rgba(38,37,30,0.55)',
+  textMuted: 'rgba(38,37,30,0.38)',
+  accent: '#f54e00',
   accentHover: '#cf2d56',
-  border:      'rgba(38,37,30,0.10)',
-  borderMed:   'rgba(38,37,30,0.20)',
+  border: 'rgba(38,37,30,0.10)',
+  borderMed: 'rgba(38,37,30,0.20)',
 } as const
 
 const F = {
   display: `'Barlow Condensed', system-ui, sans-serif`,
-  body:    `'Crimson Pro', Georgia, serif`,
-  mono:    `'IBM Plex Mono', ui-monospace, monospace`,
+  body: `'Crimson Pro', Georgia, serif`,
+  mono: `'IBM Plex Mono', ui-monospace, monospace`,
 } as const
 
 // ─── CONTENT ──────────────────────────────────────────────────────────────────
 
 const BIO = {
-  name:        'Stockton Jenkins',
-  title:       'PhD Student in Computer Science',
+  name: 'Stockton Jenkins',
+  title: 'PhD Student in Computer Science',
   institution: 'University of Wisconsin–Madison',
-  advisor:     'TODO: Advisor Name',
-  email:       'jsjenkins4@wisc.edu',
-  github:      'https://github.com/stocktonjenkins',
-  scholar:     'https://scholar.google.com/citations?user=HkFXl3YAAAAJ&hl=en',
-  cv:          'https://docs.google.com/document/d/1RCcup9fRClSFGOgjWqmuRjTbuTkHoBnNBmkDRerFb3o/export?format=pdf',
-  photo:       'stockton.jpg',
+  advisor: 'TODO: Advisor Name',
+  email: 'jsjenkins4@wisc.edu',
+  github: 'https://github.com/stocktonjenkins',
+  scholar: 'https://scholar.google.com/citations?user=HkFXl3YAAAAJ&hl=en',
+  cv: 'https://docs.google.com/document/d/1RCcup9fRClSFGOgjWqmuRjTbuTkHoBnNBmkDRerFb3o/export?format=pdf',
+  photo: 'stockton.jpg',
   bio: [
     `I am a PhD student in Computer Science at the University of Wisconsin–Madison,
      advised by <a href="https://junjiehu.github.io/" target="_blank" rel="noopener noreferrer">Prof. Junjie Hu</a> in the HuLab.
-     My research focuses on LLM agents — specifically agentic retrieval and search,
-     agent memory, and building systems that reason efficiently over large knowledge sources.`,
-    `Prior to my PhD, I received my B.S. in Computer Science <em>Summa Cum Laude</em>
-     (4.0 GPA) from Brigham Young University, where I was a member of the
-     <strong>METAL Lab</strong> working on 3D computer vision.`,
+     My research studies LLM search agents: how to make small, open-weight agents efficient
+     and reliable on information-seeking tasks. I treat search agents as decision-making policies
+     rather than iterative retrievers, and ask how to externalize state and cognitive load so the
+     model can focus on deciding what to do next. Current threads include delegation and specialization
+     across sub-policies, context management that preserves KV-cache reuse, and uncertainty-aware
+     verification of evidence-grounded answers.`,
+    `I am also the Vice President of <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer">R2I (Research to Impact)</a>,
+     a graduate student organization at UW–Madison to promote impactful research after graduate school.`,
   ],
 }
 
@@ -49,27 +52,28 @@ const RESEARCH_INTERESTS = [
   {
     icon: '◈',
     title: 'LLM Agents',
-    desc:  'Designing autonomous agent systems that plan, reason, and act across multi-step tasks — with a focus on correctness, efficiency, and scalability.',
+    desc: 'Treating agents as decision-making policies that choose what to do next, with delegation and specialization across sub-policies to keep each component focused and reliable.',
   },
   {
     icon: '⬡',
     title: 'Agentic Retrieval & Search',
-    desc:  'Building retrieval systems where agents iteratively decompose queries, traverse structured knowledge, and accumulate evidence for complex multi-hop questions.',
+    desc: 'Studying how search agents select and retain relevant evidence as candidate pools grow, and designing harnesses that help small, open-weight agents approach frontier-level performance.',
   },
   {
     icon: '◻',
-    title: 'Agent Memory',
-    desc:  'Developing memory architectures that let agents retain, index, and recall information across interactions — bridging short-term context with long-horizon knowledge.',
+    title: 'Uncertainty Quantification',
+    desc: 'Estimating how confident an agent should be in its evidence and answers, and using that signal to make better decisions about when to keep searching, verify, delegate, or stop.',
   },
   {
     icon: '◇',
     title: 'Efficient Agentic Systems',
-    desc:  'Reducing the token cost of agentic reasoning without sacrificing accuracy, enabling practical deployment of multi-agent pipelines at scale.',
+    desc: 'Reducing the cost of agentic reasoning by managing context and KV-cache reuse across calls, so multi-step search pipelines stay accurate without wasting tokens.',
   },
 ]
 
 const NEWS: { date: string; text: string }[] = [
-  { date: 'Apr 2026', text: '<strong>GRASP</strong> submitted to <strong>ACL 2026</strong> — under submission. Graph agentic retrieval achieving 40–50% fewer tokens than IRCoT+HippoRAG2 on multi-hop QA.' },
+  { date: 'Aug 2026', text: 'Asked to be <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer"><strong>R2I</strong></a> of R2I.' },
+  { date: 'Aug 2026', text: '<strong>GRASP</strong> submitted to <strong>ACL 2026</strong> — under submission. Graph agentic retrieval achieving 40–50% fewer tokens than IRCoT+HippoRAG2 on multi-hop QA.' },
   { date: 'Jan 2026', text: 'Joined the <strong>HuLab</strong> (advised by Prof. Junjie Hu) at UW–Madison.' },
   { date: 'Sep 2025', text: 'Joined <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer"><strong>R2I</strong></a> — a UW–Madison student organization dedicated to manifesting research into impactful products.' },
   { date: 'Jul 2025', text: 'My wife Katherine and I welcomed our first baby boy into the world. 🎉' },
@@ -83,12 +87,12 @@ const NEWS: { date: string; text: string }[] = [
 ]
 
 interface Paper {
-  title:       string
-  authors:     string[]        // use '*' suffix to bold (your name)
-  venue:       string
-  year:        string
-  abstract?:   string
-  links:       { label: string; href: string }[]
+  title: string
+  authors: string[]        // use '*' suffix to bold (your name)
+  venue: string
+  year: string
+  abstract?: string
+  links: { label: string; href: string }[]
   underReview: boolean
 }
 
@@ -96,10 +100,10 @@ const ME = 'J. Stockton Jenkins'
 
 const PUBLICATIONS: Paper[] = [
   {
-    title:   'GRASP: Graph Agentic Search over Propositions for Multihop Question Answering',
+    title: 'GRASP: Graph Agentic Search over Propositions for Multihop Question Answering',
     authors: [ME, 'Ramya Vinayak', 'Junjie Hu'],
-    venue:   'ACL',
-    year:    '2026',
+    venue: 'ACL',
+    year: '2026',
     abstract: 'GRASP is an agentic retrieval system that jointly optimizes accuracy and token efficiency for multi-hop QA. It decomposes queries into dependency-aware plans, scales sub-agents to question complexity, and retrieves via a novel three-layer hierarchical graph of entities, propositions, and passages. GRASP achieves highest QA accuracy on MuSiQue and 2WikiMultihopQA while using 40–50% fewer tokens than IRCoT+HippoRAG2.',
     links: [
       { label: 'OpenReview', href: '#' },
@@ -107,50 +111,50 @@ const PUBLICATIONS: Paper[] = [
     underReview: true,
   },
   {
-    title:   'Personalized Product Assortment with Real-time 3D Perception and Bayesian Payoff Estimation',
+    title: 'Personalized Product Assortment with Real-time 3D Perception and Bayesian Payoff Estimation',
     authors: ['Porter Jenkins', 'Michael Selander', ME, 'Andrew Merrill', 'Kyle Armstrong'],
-    venue:   'KDD',
-    year:    '2024',
+    venue: 'KDD',
+    year: '2024',
     abstract: 'We introduce EdgeRec3D, a real-time recommendation system that uses 3D computer vision for automatic, fine-grained sales estimation running on the edge. A Bayesian model manages LiDAR uncertainty, and a graph-based algorithm handles combinatorial assortment selection. Retail trials demonstrate sales increases of 27–35%, with sustained 9.4% growth over 28 weeks.',
     links: [
-      { label: 'PDF',  href: 'https://arxiv.org/pdf/2406.07769' },
+      { label: 'PDF', href: 'https://arxiv.org/pdf/2406.07769' },
       { label: 'arXiv', href: 'https://arxiv.org/abs/2406.07769' },
-      { label: 'ACM',  href: 'https://doi.org/10.1145/3637528.3671518' },
+      { label: 'ACM', href: 'https://doi.org/10.1145/3637528.3671518' },
     ],
     underReview: false,
   },
   {
-    title:   'CountNet3D: A 3D Computer Vision Approach to Infer Counts of Occluded Objects',
+    title: 'CountNet3D: A 3D Computer Vision Approach to Infer Counts of Occluded Objects',
     authors: ['Porter Jenkins', 'Kyle Armstrong', 'Stephen Nelson', 'Siddhesh Gotad', ME, 'Wade Wilkey', 'Tanner Watts'],
-    venue:   'WACV',
-    year:    '2023',
+    venue: 'WACV',
+    year: '2023',
     abstract: 'We study the problem of inferring 3D counts from densely packed, heavily occluded scenes with heterogeneous objects. CountNet3D fuses 2D object detectors for fine-grained classification with a PointNet backbone for geometric embedding, learning counts end-to-end from images and point clouds. Regression-based 3D counting systematically outperforms detection-based methods under extreme occlusion.',
     links: [
-      { label: 'PDF',  href: 'https://openaccess.thecvf.com/content/WACV2023/papers/Jenkins_CountNet3D_A_3D_Computer_Vision_Approach_To_Infer_Counts_of_WACV_2023_paper.pdf' },
+      { label: 'PDF', href: 'https://openaccess.thecvf.com/content/WACV2023/papers/Jenkins_CountNet3D_A_3D_Computer_Vision_Approach_To_Infer_Counts_of_WACV_2023_paper.pdf' },
       { label: 'IEEE', href: 'https://ieeexplore.ieee.org/document/10030990' },
     ],
     underReview: false,
   },
   {
-    title:   'Bayesian Model-Based Offline Reinforcement Learning for Product Allocation',
+    title: 'Bayesian Model-Based Offline Reinforcement Learning for Product Allocation',
     authors: ['Porter Jenkins', 'Hua Wei', ME, 'Zhenhui Li'],
-    venue:   'AAAI',
-    year:    '2022',
+    venue: 'AAAI',
+    year: '2022',
     abstract: 'We address retail product placement optimization with offline RL. Identifying limitations in model-based approaches for discrete state spaces, we propose PPOPO (Posterior Penalized Offline Policy Optimization), which uses Bayesian posterior predictive distributions to estimate environment dynamics and drive uncertainty-aware exploration. PPOPO outperforms alternative offline methods on both simulated and real-world retail data.',
     links: [
-      { label: 'PDF',  href: 'https://ojs.aaai.org/index.php/AAAI/article/view/21523/21272' },
+      { label: 'PDF', href: 'https://ojs.aaai.org/index.php/AAAI/article/view/21523/21272' },
       { label: 'AAAI', href: 'https://ojs.aaai.org/index.php/AAAI/article/view/21523' },
     ],
     underReview: false,
   },
   {
-    title:   'Neural Utility Functions',
+    title: 'Neural Utility Functions',
     authors: ['Porter Jenkins', 'Ahmad Farag', ME, 'Huaxiu Yao', 'Suhang Wang', 'Zhenhui Li'],
-    venue:   'AAAI',
-    year:    '2021',
+    venue: 'AAAI',
+    year: '2021',
     abstract: 'Standard neural networks have no mechanism for explicitly reasoning about item trade-offs. We incorporate principles from economic utility theory into neural architectures, optimizing gradients for consistency with utility axioms. The approach improves theoretical recovery of item relationships and enhances recommendation performance over standard baselines.',
     links: [
-      { label: 'PDF',  href: 'https://ojs.aaai.org/index.php/AAAI/article/view/16966/16773' },
+      { label: 'PDF', href: 'https://ojs.aaai.org/index.php/AAAI/article/view/16966/16773' },
       { label: 'AAAI', href: 'https://ojs.aaai.org/index.php/AAAI/article/view/16966' },
     ],
     underReview: false,
@@ -158,35 +162,35 @@ const PUBLICATIONS: Paper[] = [
 ]
 
 interface Job {
-  role:    string
-  org:     string
+  role: string
+  org: string
   orgHref?: string
-  period:  string
+  period: string
   bullets: string[]
 }
 
 const EXPERIENCE: Job[] = [
   {
-    role:    'Research Assistant',
-    org:     'HuLab, University of Wisconsin–Madison',
-    period:  '2025 – Present',
+    role: 'Research Assistant',
+    org: 'HuLab, University of Wisconsin–Madison',
+    period: '2025 – Present',
     bullets: [
       'Advised by Prof. Junjie Hu; research focuses on LLM agents, agentic retrieval and search, agent memory, and systems that reason efficiently over large knowledge sources.',
       'Developed GRASP, a graph agentic retrieval system that decomposes multi-hop queries into dependency-aware plans and retrieves over a three-layer hierarchical graph of entities, propositions, and passages — achieving state-of-the-art accuracy on MuSiQue and 2WikiMultihopQA while using 40–50% fewer tokens than IRCoT+HippoRAG2.',
     ],
   },
   {
-    role:    'Head Teaching Assistant',
-    org:     'CS 544, University of Wisconsin–Madison',
-    period:  '2024 – 2026',
+    role: 'Head Teaching Assistant',
+    org: 'CS 544, University of Wisconsin–Madison',
+    period: '2024 – 2026',
     bullets: [
       'Developed, deployed, and maintained automated grading infrastructure for thousands of undergraduate students across several semesters.',
     ],
   },
   {
-    role:    'Research Assistant',
-    org:     'METAL Lab, Brigham Young University',
-    period:  'Aug 2021 – Apr 2022',
+    role: 'Research Assistant',
+    org: 'METAL Lab, Brigham Young University',
+    period: 'Aug 2021 – Apr 2022',
     bullets: [
       'Developed and evaluated 3D object detection and semantic segmentation models.',
       'Published CountNet3D (WACV 2023) on 3D counting under extreme occlusion.',
@@ -195,10 +199,10 @@ const EXPERIENCE: Job[] = [
 ]
 
 interface Degree {
-  degree:   string
-  school:   string
-  period:   string
-  notes:    string[]
+  degree: string
+  school: string
+  period: string
+  notes: string[]
 }
 
 const EDUCATION: Degree[] = [
@@ -206,37 +210,37 @@ const EDUCATION: Degree[] = [
     degree: 'Ph.D. in Computer Science',
     school: 'University of Wisconsin–Madison',
     period: 'Aug 2024 – Present',
-    notes:  ['Advisor: Junjie Hu · HuLab', 'LLM Agents · Agentic Retrieval · Agent Memory'],
+    notes: ['Advisor: Junjie Hu · HuLab', 'LLM Agents · Agentic Retrieval · Agent Memory'],
   },
   {
     degree: 'B.S. in Computer Science',
     school: 'Brigham Young University',
     period: 'Aug 2019 – Apr 2022',
-    notes:  ['Summa Cum Laude · 4.0 GPA', 'METAL Lab'],
+    notes: ['Summa Cum Laude · 4.0 GPA', 'METAL Lab'],
   },
   {
     degree: 'Computational Mathematics',
     school: 'University of Utah',
     period: '2015 – 2016, 2018 – 2019',
-    notes:  ['4.0 GPA', 'Computation emphasis'],
+    notes: ['4.0 GPA', 'Computation emphasis'],
   },
 ]
 
 interface ServiceEntry {
-  role:    string
-  org:     string
+  role: string
+  org: string
   orgHref: string
-  period:  string
-  desc:    string
+  period: string
+  desc: string
 }
 
 const SERVICE: ServiceEntry[] = [
   {
-    role:    'Missionary',
-    org:     'The Church of Jesus Christ of Latter-day Saints',
+    role: 'Missionary',
+    org: 'The Church of Jesus Christ of Latter-day Saints',
     orgHref: 'https://www.churchofjesuschrist.org/?lang=eng',
-    period:  '2016 – 2018',
-    desc:    'Served a full-time volunteer mission in Costa Rica, dedicating two years to community service, language immersion in Spanish, and leadership development.',
+    period: '2016 – 2018',
+    desc: 'Served a full-time volunteer mission in Costa Rica, dedicating two years to community service, language immersion in Spanish, and leadership development.',
   },
 ]
 
@@ -264,16 +268,16 @@ function useScrollSpy(ids: string[]) {
 
 const Pill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <span style={{
-    display:        'inline-block',
-    fontFamily:     F.mono,
-    fontSize:       '11px',
-    fontWeight:     500,
-    letterSpacing:  '0.04em',
-    padding:        '2px 8px',
-    borderRadius:   '9999px',
-    border:         `1px solid ${C.border}`,
-    background:     C.bgCard,
-    color:          C.textSec,
+    display: 'inline-block',
+    fontFamily: F.mono,
+    fontSize: '11px',
+    fontWeight: 500,
+    letterSpacing: '0.04em',
+    padding: '2px 8px',
+    borderRadius: '9999px',
+    border: `1px solid ${C.border}`,
+    background: C.bgCard,
+    color: C.textSec,
   }}>
     {children}
   </span>
@@ -289,17 +293,17 @@ const Tag: React.FC<{ label: string; href: string }> = ({ label, href }) => {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        fontFamily:    F.mono,
-        fontSize:      '11px',
-        fontWeight:    500,
+        fontFamily: F.mono,
+        fontSize: '11px',
+        fontWeight: 500,
         letterSpacing: '0.05em',
-        padding:       '3px 10px',
-        borderRadius:  '4px',
-        border:        `1px solid ${hov ? C.borderMed : C.border}`,
-        background:    hov ? C.bgCard : C.bgAlt,
-        color:         hov ? C.accent : C.textSec,
-        transition:    'all 0.15s ease',
-        whiteSpace:    'nowrap' as const,
+        padding: '3px 10px',
+        borderRadius: '4px',
+        border: `1px solid ${hov ? C.borderMed : C.border}`,
+        background: hov ? C.bgCard : C.bgAlt,
+        color: hov ? C.accent : C.textSec,
+        transition: 'all 0.15s ease',
+        whiteSpace: 'nowrap' as const,
       }}
     >
       {label}
@@ -322,43 +326,43 @@ const NavBar: React.FC<{ active: string }> = ({ active }) => {
   }, [])
 
   const links = [
-    { id: 'research',     label: 'Research'      },
-    { id: 'news',         label: 'News'          },
-    { id: 'publications', label: 'Publications'  },
-    { id: 'experience',   label: 'Experience'    },
-    { id: 'education',    label: 'Education'     },
-    { id: 'service',      label: 'Service'       },
+    { id: 'research', label: 'Research' },
+    { id: 'news', label: 'News' },
+    { id: 'publications', label: 'Publications' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'education', label: 'Education' },
+    { id: 'service', label: 'Service' },
   ]
 
   return (
     <nav style={{
-      position:        'sticky',
-      top:             0,
-      zIndex:          100,
-      background:      scrolled ? 'rgba(242,241,237,0.88)' : C.bg,
-      backdropFilter:  scrolled ? 'blur(12px)' : 'none',
-      borderBottom:    `1px solid ${scrolled ? C.border : 'transparent'}`,
-      transition:      'all 0.2s ease',
+      position: 'sticky',
+      top: 0,
+      zIndex: 100,
+      background: scrolled ? 'rgba(242,241,237,0.88)' : C.bg,
+      backdropFilter: scrolled ? 'blur(12px)' : 'none',
+      borderBottom: `1px solid ${scrolled ? C.border : 'transparent'}`,
+      transition: 'all 0.2s ease',
     }}>
       <div style={{
-        maxWidth:       '820px',
-        margin:         '0 auto',
-        padding:        '0 24px',
-        display:        'flex',
-        alignItems:     'center',
+        maxWidth: '820px',
+        margin: '0 auto',
+        padding: '0 24px',
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'space-between',
-        height:         '56px',
+        height: '56px',
       }}>
         {/* Name / logo */}
         <a href="#bio" style={{
-          display:        'flex',
-          alignItems:     'center',
-          gap:            '10px',
-          fontFamily:     F.display,
-          fontSize:       '17px',
-          fontWeight:     600,
-          letterSpacing:  '0.02em',
-          color:          C.text,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          fontFamily: F.display,
+          fontSize: '17px',
+          fontWeight: 600,
+          letterSpacing: '0.02em',
+          color: C.text,
           textDecoration: 'none',
         }}>
           <UWCrest style={{ height: '28px', width: 'auto', fill: C.text, flexShrink: 0 }} />
@@ -372,13 +376,13 @@ const NavBar: React.FC<{ active: string }> = ({ active }) => {
               key={l.id}
               href={`#${l.id}`}
               style={{
-                fontFamily:    F.display,
-                fontSize:      '14px',
-                fontWeight:    500,
+                fontFamily: F.display,
+                fontSize: '14px',
+                fontWeight: 500,
                 letterSpacing: '0.04em',
-                color:         active === l.id ? C.accent : C.textSec,
-                textDecoration:'none',
-                transition:    'color 0.15s ease',
+                color: active === l.id ? C.accent : C.textSec,
+                textDecoration: 'none',
+                transition: 'color 0.15s ease',
               }}
             >
               {l.label}
@@ -394,39 +398,39 @@ const BioSection: React.FC = () => (
   <section id="bio" style={{ padding: '72px 24px 64px' }}>
     <div className="bio-grid" style={{
       maxWidth: '820px',
-      margin:   '0 auto',
-      display:  'grid',
+      margin: '0 auto',
+      display: 'grid',
       gridTemplateColumns: 'minmax(0,1fr) 220px',
-      gap:      '64px',
+      gap: '64px',
       alignItems: 'start',
     }}>
       {/* Text */}
       <div>
         <h1 style={{
-          fontFamily:    F.display,
-          fontSize:      'clamp(42px, 7vw, 64px)',
-          fontWeight:    400,
+          fontFamily: F.display,
+          fontSize: 'clamp(42px, 7vw, 64px)',
+          fontWeight: 400,
           letterSpacing: '-1.5px',
-          lineHeight:    1.05,
-          color:         C.text,
-          marginBottom:  '6px',
+          lineHeight: 1.05,
+          color: C.text,
+          marginBottom: '6px',
         }}>
           {BIO.name}
         </h1>
         <p style={{
-          fontFamily:   F.display,
-          fontSize:     '18px',
-          fontWeight:   400,
-          letterSpacing:'0.01em',
-          color:        C.textSec,
+          fontFamily: F.display,
+          fontSize: '18px',
+          fontWeight: 400,
+          letterSpacing: '0.01em',
+          color: C.textSec,
           marginBottom: '4px',
         }}>
           {BIO.title}
         </p>
         <p style={{
-          fontFamily:   F.display,
-          fontSize:     '15px',
-          color:        C.textMuted,
+          fontFamily: F.display,
+          fontSize: '15px',
+          color: C.textMuted,
           marginBottom: '32px',
         }}>
           {BIO.institution}
@@ -434,10 +438,10 @@ const BioSection: React.FC = () => (
 
         {/* Links */}
         <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '10px', marginBottom: '36px' }}>
-          <Tag label="✉ Email"          href={`mailto:${BIO.email}`} />
-          <Tag label="GitHub"           href={BIO.github} />
-          <Tag label="Google Scholar"   href={BIO.scholar} />
-          <Tag label="CV / Résumé"      href={BIO.cv} />
+          <Tag label="✉ Email" href={`mailto:${BIO.email}`} />
+          <Tag label="GitHub" href={BIO.github} />
+          <Tag label="Google Scholar" href={BIO.scholar} />
+          <Tag label="CV / Résumé" href={BIO.cv} />
         </div>
 
         {/* Bio paragraphs */}
@@ -448,9 +452,9 @@ const BioSection: React.FC = () => (
               dangerouslySetInnerHTML={{ __html: p.replace(/\s+/g, ' ').trim() }}
               style={{
                 fontFamily: F.body,
-                fontSize:   '18px',
+                fontSize: '18px',
                 lineHeight: 1.65,
-                color:      C.text,
+                color: C.text,
               }}
             />
           ))}
@@ -460,9 +464,9 @@ const BioSection: React.FC = () => (
       {/* Photo */}
       <div className="bio-photo" style={{
         borderRadius: '8px',
-        overflow:     'hidden',
-        border:       `1px solid ${C.border}`,
-        boxShadow:    `rgba(0,0,0,0.08) 0px 8px 24px`,
+        overflow: 'hidden',
+        border: `1px solid ${C.border}`,
+        boxShadow: `rgba(0,0,0,0.08) 0px 8px 24px`,
       }}>
         <img
           src={BIO.photo}
@@ -479,42 +483,42 @@ const ResearchSection: React.FC = () => (
     <div style={{ maxWidth: '820px', margin: '0 auto' }}>
       <SectionHeading label="Research Interests" />
       <div className="research-grid" style={{
-        display:               'grid',
-        gridTemplateColumns:   'repeat(auto-fill, minmax(340px, 1fr))',
-        gap:                   '16px',
-        marginTop:             '32px',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+        gap: '16px',
+        marginTop: '32px',
       }}>
         {RESEARCH_INTERESTS.map(r => (
           <div key={r.title} style={{
-            background:   C.bg,
-            border:       `1px solid ${C.border}`,
+            background: C.bg,
+            border: `1px solid ${C.border}`,
             borderRadius: '8px',
-            padding:      '24px',
+            padding: '24px',
           }}>
             <div style={{
-              fontFamily:   F.display,
-              fontSize:     '26px',
-              color:        C.accent,
+              fontFamily: F.display,
+              fontSize: '26px',
+              color: C.accent,
               marginBottom: '10px',
-              lineHeight:   1,
+              lineHeight: 1,
             }}>
               {r.icon}
             </div>
             <h3 style={{
-              fontFamily:    F.display,
-              fontSize:      '19px',
-              fontWeight:    600,
+              fontFamily: F.display,
+              fontSize: '19px',
+              fontWeight: 600,
               letterSpacing: '-0.1px',
-              color:         C.text,
-              marginBottom:  '8px',
+              color: C.text,
+              marginBottom: '8px',
             }}>
               {r.title}
             </h3>
             <p style={{
               fontFamily: F.body,
-              fontSize:   '16px',
+              fontSize: '16px',
               lineHeight: 1.6,
-              color:      C.textSec,
+              color: C.textSec,
             }}>
               {r.desc}
             </p>
@@ -533,18 +537,18 @@ const NewsSection: React.FC = () => (
         {NEWS.map((item, i) => (
           <React.Fragment key={i}>
             <div className="news-row" style={{
-              display:   'grid',
+              display: 'grid',
               gridTemplateColumns: '96px 1fr',
-              gap:       '24px',
-              padding:   '16px 0',
-              alignItems:'baseline',
+              gap: '24px',
+              padding: '16px 0',
+              alignItems: 'baseline',
             }}>
               <span style={{
-                fontFamily:   F.mono,
-                fontSize:     '12px',
-                color:        C.textMuted,
-                paddingTop:   '2px',
-                whiteSpace:   'nowrap' as const,
+                fontFamily: F.mono,
+                fontSize: '12px',
+                color: C.textMuted,
+                paddingTop: '2px',
+                whiteSpace: 'nowrap' as const,
               }}>
                 {item.date}
               </span>
@@ -552,9 +556,9 @@ const NewsSection: React.FC = () => (
                 dangerouslySetInnerHTML={{ __html: item.text }}
                 style={{
                   fontFamily: F.body,
-                  fontSize:   '17px',
+                  fontSize: '17px',
                   lineHeight: 1.55,
-                  color:      C.text,
+                  color: C.text,
                 }}
               />
             </div>
@@ -581,10 +585,10 @@ const PublicationsSection: React.FC = () => (
 
 const PaperCard: React.FC<{ paper: Paper }> = ({ paper }) => (
   <div className="paper-card" style={{
-    background:   C.bg,
-    border:       `1px solid ${C.border}`,
+    background: C.bg,
+    border: `1px solid ${C.border}`,
     borderRadius: '8px',
-    padding:      '20px 24px',
+    padding: '20px 24px',
   }}>
     {/* Venue + year pill */}
     <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '10px' }}>
@@ -596,13 +600,13 @@ const PaperCard: React.FC<{ paper: Paper }> = ({ paper }) => (
 
     {/* Title */}
     <h3 style={{
-      fontFamily:    F.display,
-      fontSize:      '20px',
-      fontWeight:    500,
+      fontFamily: F.display,
+      fontSize: '20px',
+      fontWeight: 500,
       letterSpacing: '-0.1px',
-      lineHeight:    1.25,
-      color:         C.text,
-      marginBottom:  '8px',
+      lineHeight: 1.25,
+      color: C.text,
+      marginBottom: '8px',
     }}>
       {paper.title}
     </h3>
@@ -610,8 +614,8 @@ const PaperCard: React.FC<{ paper: Paper }> = ({ paper }) => (
     {/* Authors */}
     <p style={{
       fontFamily: F.body,
-      fontSize:   '15px',
-      color:      C.textSec,
+      fontSize: '15px',
+      color: C.textSec,
       marginBottom: paper.abstract ? '10px' : '14px',
       lineHeight: 1.4,
     }}>
@@ -628,10 +632,10 @@ const PaperCard: React.FC<{ paper: Paper }> = ({ paper }) => (
     {/* Abstract */}
     {paper.abstract && (
       <p style={{
-        fontFamily:   F.body,
-        fontSize:     '16px',
-        lineHeight:   1.55,
-        color:        C.textSec,
+        fontFamily: F.body,
+        fontSize: '16px',
+        lineHeight: 1.55,
+        color: C.textSec,
         marginBottom: '14px',
       }}>
         {paper.abstract}
@@ -670,18 +674,18 @@ const JobRow: React.FC<{ job: Job }> = ({ job }) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap' as const, gap: '8px' }}>
       <div>
         <span style={{
-          fontFamily:   F.display,
-          fontSize:     '19px',
-          fontWeight:   600,
-          letterSpacing:'-0.1px',
-          color:        C.text,
+          fontFamily: F.display,
+          fontSize: '19px',
+          fontWeight: 600,
+          letterSpacing: '-0.1px',
+          color: C.text,
         }}>
           {job.role}
         </span>
         <span style={{
           fontFamily: F.display,
-          fontSize:   '16px',
-          color:      C.textSec,
+          fontSize: '16px',
+          color: C.textSec,
           marginLeft: '10px',
         }}>
           — {job.orgHref
@@ -691,8 +695,8 @@ const JobRow: React.FC<{ job: Job }> = ({ job }) => (
       </div>
       <span style={{
         fontFamily: F.mono,
-        fontSize:   '12px',
-        color:      C.textMuted,
+        fontSize: '12px',
+        color: C.textMuted,
       }}>
         {job.period}
       </span>
@@ -701,9 +705,9 @@ const JobRow: React.FC<{ job: Job }> = ({ job }) => (
       {job.bullets.map((b, i) => (
         <li key={i} style={{
           fontFamily: F.body,
-          fontSize:   '17px',
+          fontSize: '17px',
           lineHeight: 1.55,
-          color:      C.textSec,
+          color: C.textSec,
         }}>
           {b}
         </li>
@@ -731,35 +735,35 @@ const EducationSection: React.FC = () => (
 const DegreeRow: React.FC<{ degree: Degree }> = ({ degree }) => (
   <div style={{ padding: '28px 0' }}>
     <div style={{
-      display:         'flex',
-      justifyContent:  'space-between',
-      alignItems:      'baseline',
-      flexWrap:        'wrap' as const,
-      gap:             '8px',
-      marginBottom:    '8px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'baseline',
+      flexWrap: 'wrap' as const,
+      gap: '8px',
+      marginBottom: '8px',
     }}>
       <span style={{
-        fontFamily:    F.display,
-        fontSize:      '20px',
-        fontWeight:    600,
+        fontFamily: F.display,
+        fontSize: '20px',
+        fontWeight: 600,
         letterSpacing: '-0.1px',
-        color:         C.text,
+        color: C.text,
       }}>
         {degree.degree}
       </span>
       <span style={{
         fontFamily: F.mono,
-        fontSize:   '12px',
-        color:      C.textMuted,
+        fontSize: '12px',
+        color: C.textMuted,
       }}>
         {degree.period}
       </span>
     </div>
     <p style={{
-      fontFamily:   F.display,
-      fontSize:     '16px',
-      fontWeight:   500,
-      color:        C.textSec,
+      fontFamily: F.display,
+      fontSize: '16px',
+      fontWeight: 500,
+      color: C.textSec,
       marginBottom: '10px',
     }}>
       {degree.school}
@@ -779,20 +783,20 @@ const ServiceSection: React.FC = () => (
           <React.Fragment key={i}>
             <div style={{ padding: '28px 0' }}>
               <div style={{
-                display:        'flex',
+                display: 'flex',
                 justifyContent: 'space-between',
-                alignItems:     'baseline',
-                flexWrap:       'wrap' as const,
-                gap:            '8px',
-                marginBottom:   '10px',
+                alignItems: 'baseline',
+                flexWrap: 'wrap' as const,
+                gap: '8px',
+                marginBottom: '10px',
               }}>
                 <div>
                   <span style={{
-                    fontFamily:    F.display,
-                    fontSize:      '19px',
-                    fontWeight:    600,
+                    fontFamily: F.display,
+                    fontSize: '19px',
+                    fontWeight: 600,
                     letterSpacing: '-0.1px',
-                    color:         C.text,
+                    color: C.text,
                   }}>
                     {s.role}
                   </span>
@@ -821,14 +825,14 @@ const ServiceSection: React.FC = () => (
 
 const Footer: React.FC = () => (
   <footer style={{
-    padding:      '40px 24px',
-    borderTop:    `1px solid ${C.border}`,
-    textAlign:    'center',
+    padding: '40px 24px',
+    borderTop: `1px solid ${C.border}`,
+    textAlign: 'center',
   }}>
     <p style={{
       fontFamily: F.mono,
-      fontSize:   '12px',
-      color:      C.textMuted,
+      fontSize: '12px',
+      color: C.textMuted,
     }}>
       © {new Date().getFullYear()} Stockton Jenkins ·{' '}
       <a href={`mailto:${BIO.email}`} style={{ color: C.textMuted }}>
@@ -842,13 +846,13 @@ const Footer: React.FC = () => (
 
 const SectionHeading: React.FC<{ label: string }> = ({ label }) => (
   <h2 style={{
-    fontFamily:    F.display,
-    fontSize:      'clamp(28px, 5vw, 36px)',
-    fontWeight:    400,
+    fontFamily: F.display,
+    fontSize: 'clamp(28px, 5vw, 36px)',
+    fontWeight: 400,
     letterSpacing: '-0.72px',
-    lineHeight:    1.15,
-    color:         C.text,
-    borderBottom:  `1px solid ${C.border}`,
+    lineHeight: 1.15,
+    color: C.text,
+    borderBottom: `1px solid ${C.border}`,
     paddingBottom: '12px',
   }}>
     {label}
