@@ -72,7 +72,7 @@ const RESEARCH_INTERESTS = [
 ]
 
 const NEWS: { date: string; text: string }[] = [
-  { date: 'Aug 2026', text: 'Asked to be <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer"><strong>R2I</strong></a> of R2I.' },
+  { date: 'Aug 2026', text: 'Asked to be VP of <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer"><strong>R2I</strong></a>.' },
   { date: 'Aug 2026', text: '<strong>GRASP</strong> submitted to <strong>ACL 2026</strong> — under submission. Graph agentic retrieval achieving 40–50% fewer tokens than IRCoT+HippoRAG2 on multi-hop QA.' },
   { date: 'Jan 2026', text: 'Joined the <strong>HuLab</strong> (advised by Prof. Junjie Hu) at UW–Madison.' },
   { date: 'Sep 2025', text: 'Joined <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer"><strong>R2I</strong></a> — a UW–Madison student organization dedicated to manifesting research into impactful products.' },
