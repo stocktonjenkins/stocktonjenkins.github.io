@@ -38,11 +38,8 @@ const BIO = {
     `I am a PhD student in Computer Science at the University of Wisconsin–Madison,
      advised by <a href="https://junjiehu.github.io/" target="_blank" rel="noopener noreferrer">Prof. Junjie Hu</a> in the HuLab.
      My research studies LLM search agents: how to make small, open-weight agents efficient
-     and reliable on information-seeking tasks. I treat search agents as decision-making policies
-     rather than iterative retrievers, and ask how to externalize state and cognitive load so the
-     model can focus on deciding what to do next. Current threads include delegation and specialization
-     across sub-policies, context management that preserves KV-cache reuse, and uncertainty-aware
-     verification of evidence-grounded answers.`,
+     and reliable on information-seeking tasks. Current threads include scaling these agents to long-horizon
+     search tasks and quantifying uncertainty in the agent's information needs.`,
     `I am also the Vice President of <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer">R2I (Research to Impact)</a>,
      a graduate student organization at UW–Madison to promote impactful research after graduate school.`,
   ],
@@ -52,7 +49,7 @@ const RESEARCH_INTERESTS = [
   {
     icon: '◈',
     title: 'LLM Agents',
-    desc: 'Treating agents as decision-making policies that choose what to do next, with delegation and specialization across sub-policies to keep each component focused and reliable.',
+    desc: 'Building agents that stay on track over long-horizon tasks, keeping sight of what they have already found and what they still need to know across many steps of search and reasoning.',
   },
   {
     icon: '⬡',
