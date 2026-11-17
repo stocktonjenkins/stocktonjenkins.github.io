@@ -30,24 +30,19 @@ const BIO = {
 const RESEARCH_INTERESTS = [
   {
     icon: '◈',
-    title: 'LLM Agents',
-    desc: 'Building agents that stay on track over long-horizon tasks, keeping sight of what they have already found and what they still need to know across many steps of search and reasoning.',
+    title: 'LLM Search Agents',
+    desc: 'Building agents that iteratively search and reason to satisfy user requests; making small, open-weight agents competitive with frontier models on long-horizon search tasks.',
   },
   {
     icon: '⬡',
-    title: 'Agentic Retrieval & Search',
-    desc: 'Studying how search agents select and retain relevant evidence as candidate pools grow, and designing harnesses that help small, open-weight agents approach frontier-level performance.',
+    title: 'Context Management for Small Agents',
+    desc: 'Overcoming context rot: as an agent\'s context grows, small models lose track of the evidence they have already found. I study how to select and retain what matters so that evidence survives to the final answer and recall improves.',
   },
   {
     icon: '◻',
     title: 'Uncertainty Quantification',
-    desc: 'Estimating how confident an agent should be in its evidence and answers, and using that signal to make better decisions about when to keep searching, verify, delegate, or stop.',
-  },
-  {
-    icon: '◇',
-    title: 'Efficient Agentic Systems',
-    desc: 'Reducing the cost of agentic reasoning by managing context and KV-cache reuse across calls, so multi-step search pipelines stay accurate without wasting tokens.',
-  },
+    desc: 'Estimating how confident an agent should be in its evidence and answers, and using that signal to make better decisions about when to keep searching, verify, abstain, or stop.',
+  }
 ]
 
 const NEWS: { date: string; text: string }[] = [
@@ -351,25 +346,25 @@ const NavBar: React.FC<{ active: string }> = ({ active }) => {
 
         {/* Nav links — hidden on small screens */}
         <div style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
-        <div className="nav-links" style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
-          {links.map(l => (
-            <a
-              key={l.id}
-              href={`#${l.id}`}
-              style={{
-                fontFamily: F.display,
-                fontSize: '14px',
-                fontWeight: 500,
-                letterSpacing: '0.04em',
-                color: active === l.id ? C.accent : C.textSec,
-                textDecoration: 'none',
-                transition: 'color 0.15s ease',
-              }}
-            >
-              {l.label}
-            </a>
-          ))}
-        </div>
+          <div className="nav-links" style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
+            {links.map(l => (
+              <a
+                key={l.id}
+                href={`#${l.id}`}
+                style={{
+                  fontFamily: F.display,
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  letterSpacing: '0.04em',
+                  color: active === l.id ? C.accent : C.textSec,
+                  textDecoration: 'none',
+                  transition: 'color 0.15s ease',
+                }}
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
           <Link
             to="/blog"
             style={{
@@ -482,7 +477,7 @@ const ResearchSection: React.FC = () => (
       <SectionHeading label="Research Interests" />
       <div className="research-grid" style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
         gap: '16px',
         marginTop: '32px',
       }}>
