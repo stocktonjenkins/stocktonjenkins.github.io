@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals'
 // Blog code (Firebase, the editor) is split out so the homepage stays light.
 const BlogIndex = lazy(() => import('./blog/BlogIndex'))
 const PostPage = lazy(() => import('./blog/PostPage'))
+const SeriesPage = lazy(() => import('./blog/SeriesPage'))
 const AdminPages = lazy(() => import('./blog/AdminPages'))
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
@@ -17,6 +18,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/series/:slug" element={<SeriesPage />} />
           <Route path="/blog/:slug" element={<PostPage />} />
           <Route path="/write/*" element={<AdminPages />} />
           <Route path="*" element={<App />} />

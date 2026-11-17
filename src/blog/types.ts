@@ -29,6 +29,26 @@ export interface Post {
   summaryAi: boolean
   /** Reader visits, counted once per browser per day. Excludes the admin. */
   views: number
+  /** Id of the series this post belongs to, or null. */
+  series: string | null
+  /** Optional manual position within the series; falls back to publish date. */
+  seriesOrder: number | null
+}
+
+/**
+ * An umbrella for posts about one ongoing project. Readable by the public only
+ * while `listed` is true, which is kept equal to "has a published post"
+ * (see refreshSeriesListed), so an unannounced project never leaks.
+ */
+export interface Series {
+  id: string
+  slug: string
+  title: string
+  description: string
+  status: 'active' | 'complete'
+  listed: boolean
+  createdAt: number
+  updatedAt: number
 }
 
 /** Admin-only settings stored at config/ai (never shipped in the site bundle). */

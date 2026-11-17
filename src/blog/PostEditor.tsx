@@ -19,10 +19,17 @@ import { getMathBlockTypeSelectItems, getMathSlashMenuItems } from '@blocknote/m
 import { BlogEditor, dictionary, schema } from './schema'
 import { readingMinutes, scanDocument, setDocMeta, useDocMeta } from './docMeta'
 import { formatAuthors, parseBibtex, shortCite } from './bibtex'
-import { DEFAULT_MODEL, deletePost, getAiConfig, listAll, saveAiConfig, savePost, slugify, slugTaken, uploadImage } from './posts'
+import {
+  createSeries,
+  listAllSeries,
+  refreshSeriesListed,
+  DEFAULT_MODEL,
+  deletePost,
+  getAiConfig,
+  listAll, saveAiConfig, savePost, slugify, slugTaken, uploadImage } from './posts'
 import { generateSummary, generateTags } from './summarize'
 import { docToText } from './text'
-import { AiConfig, Post, Reference } from './types'
+import { AiConfig, Post, Reference, Series } from './types'
 import './blog.css'
 
 type SaveState = 'saved' | 'saving' | 'dirty' | 'error'
@@ -106,11 +113,13 @@ function SettingsPanel({
   onDelete,
   onGenerate,
   onSuggestTags,
+  onSeriesChange,
   generating,
   genError,
 }: {
   post: Post
   onChange: (p: Partial<Post>) => void
+  onSeriesChange: (seriesId: string | null) => void
   onClose: () => void
   onDelete: () => void
   onGenerate: () => void
@@ -165,6 +174,7 @@ function SettingsPanel({
             </button>
           </div>
         </label>
+        <SeriesField post={post} onChange={onChange} onSeriesChange={onSeriesChange} />
         <label className="bl-field">
           <span>
             Summary
@@ -191,6 +201,106 @@ function SettingsPanel({
           </button>
         </div>
       </div>
+    </div>
+  )
+}
+
+// ─── Series picker ───────────────────────────────────────────────────────────
+
+function SeriesField({
+  post,
+  onChange,
+  onSeriesChange,
+}: {
+  post: Post
+  onChange: (p: Partial<Post>) => void
+  onSeriesChange: (seriesId: string | null) => void
+}) {
+  const [list, setList] = useState<Series[] | null>(null)
+  const [creating, setCreating] = useState(false)
+  const [title, setTitle] = useState('')
+  const [err, setErr] = useState('')
+  useEffect(() => {
+    listAllSeries()
+      .then(setList)
+      .catch(e => setErr(e?.message ?? String(e)))
+  }, [])
+  // A series id that no longer exists (deleted series) reads as "none".
+  const current = list && post.series && list.some(s => s.id === post.series) ? post.series : ''
+
+  const create = async () => {
+    const t = title.trim()
+    if (!t) return
+    try {
+      const s = await createSeries(t)
+      setList(l => [...(l ?? []), s].sort((a, b) => a.title.localeCompare(b.title)))
+      setCreating(false)
+      setTitle('')
+      onSeriesChange(s.id)
+    } catch (e: any) {
+      setErr(e?.message ?? String(e))
+    }
+  }
+
+  return (
+    <div className="bl-field">
+      <span>Series</span>
+      {list === null && !err ? (
+        <small>Loading…</small>
+      ) : creating ? (
+        <div className="bl-field-row">
+          <input
+            autoFocus
+            value={title}
+            placeholder="Series title"
+            onChange={e => setTitle(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === 'Enter') create()
+              if (e.key === 'Escape') setCreating(false)
+            }}
+            style={{ flex: 1 }}
+          />
+          <button className="bl-btn bl-btn-sm" onClick={create} disabled={!title.trim()}>
+            Create
+          </button>
+          <button className="bl-btn bl-btn-sm bl-btn-ghost" onClick={() => setCreating(false)}>
+            Cancel
+          </button>
+        </div>
+      ) : (
+        <select
+          className="bl-select"
+          value={current}
+          onChange={e => {
+            if (e.target.value === '__new') setCreating(true)
+            else onSeriesChange(e.target.value || null)
+          }}
+        >
+          <option value="">None</option>
+          {(list ?? []).map(s => (
+            <option key={s.id} value={s.id}>
+              {s.title}
+              {s.listed ? '' : ' (private)'}
+            </option>
+          ))}
+          <option value="__new">＋ New series…</option>
+        </select>
+      )}
+      {current && (
+        <label className="bl-field-inline">
+          Order
+          <input
+            type="number"
+            min={1}
+            value={post.seriesOrder ?? ''}
+            placeholder="auto"
+            onChange={e => onChange({ seriesOrder: e.target.value === '' ? null : Number(e.target.value) })}
+          />
+          <small>Leave on auto to order by publish date.</small>
+        </label>
+      )}
+      {err && <small className="bl-field-error">{err}</small>}
+      <small>A series stays private until one of its posts is published. Edit its description on the dashboard.</small>
     </div>
   )
 }
@@ -422,6 +532,7 @@ export default function PostEditor({ initial }: { initial: Post }) {
     if (post.published) {
       update({ published: false })
       await flush()
+      await refreshSeriesListed(post.series).catch(console.warn)
       return
     }
     if (!post.title.trim()) {
@@ -440,6 +551,7 @@ export default function PostEditor({ initial }: { initial: Post }) {
     }
     update({ published: true, slug, publishedAt: post.publishedAt ?? Date.now() })
     await flush()
+    await refreshSeriesListed(post.series).catch(console.warn)
     // Fill an empty summary and/or empty tags with Gemini; a failure never undoes the publish.
     const want = { summary: !post.summary.trim(), tags: post.tags.length === 0 }
     if (want.summary || want.tags) {
@@ -513,6 +625,7 @@ export default function PostEditor({ initial }: { initial: Post }) {
   const onDelete = async () => {
     if (!window.confirm(`Delete "${post.title || 'Untitled'}"? This can't be undone.`)) return
     await deletePost(post.id)
+    await refreshSeriesListed(post.series).catch(console.warn)
     navigate('/write')
   }
 
@@ -641,6 +754,12 @@ export default function PostEditor({ initial }: { initial: Post }) {
           }}
           onSuggestTags={async () => {
             if (await aiFill({ tags: true })) await flush()
+          }}
+          onSeriesChange={async seriesId => {
+            const prev = post.series
+            update({ series: seriesId, seriesOrder: null }) // null, not undefined: must clear in Firestore
+            await flush()
+            await Promise.all([refreshSeriesListed(prev), refreshSeriesListed(seriesId)]).catch(console.warn)
           }}
           generating={generating}
           genError={genError}

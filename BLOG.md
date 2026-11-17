@@ -42,6 +42,20 @@ Posts live in Firebase: Firestore holds the posts, Cloud Storage holds the image
 - **Autosave** runs about a second after you stop typing. `⌘S` saves immediately.
 - **Settings** (top right): URL slug, tags, delete. **Publish** picks a slug from the title if you haven't set one.
 
+## Series
+
+Group posts about one ongoing project under a single umbrella.
+
+- **Create / assign**: in a post's **Settings → Series**, pick a series or choose "New series…". **Order** is optional: leave it on auto to order parts by publish date, or give numbers to pin an order.
+- **Privacy**: a series is private until one of its posts is published. Until then its title and description can't be read by anyone but you (enforced by `firestore.rules`). Publishing, unpublishing, deleting or moving a post updates this automatically.
+- **Readers see**:
+  - a "Part n of m" box above each post, listing every part;
+  - previous/next links at the end of the post;
+  - a page per series at `/blog/series/<slug>`;
+  - series cards on `/blog`.
+- **Part numbers** count published posts only, so drafts never leave gaps.
+- **Manage** titles, descriptions and Ongoing/Complete status in the **Series** section of `/write`. You can delete a series once it has no posts.
+
 ## Search, views, AI
 
 - **Search** (`/blog`): a keyword search box ranks posts with BM25, an IDF-weighted score. Title and tag matches count more than body matches. The last word also matches as a prefix, so results update while you type. Search combines with the tag filter, and both are kept in the URL (`?q=…&tag=…`).

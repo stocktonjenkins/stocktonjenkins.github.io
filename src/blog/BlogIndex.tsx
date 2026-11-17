@@ -2,8 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import BlogLayout from './BlogLayout'
 import { firebaseConfigured } from './firebase'
-import { formatDate, listPublished } from './posts'
-import { Post } from './types'
+import { formatDate, listListedSeries, listPublished } from './posts'
+import { seriesParts } from './series'
+import { Post, Series } from './types'
 import { buildIndex, Hit, isEmptyQuery, search } from './search'
 import { EmptyArt, NoResultsArt } from './Illustrations'
 import { Loading, Message } from './States'
@@ -11,6 +12,7 @@ import { Loading, Message } from './States'
 export default function BlogIndex() {
   const [posts, setPosts] = useState<Post[] | null>(null)
   const [error, setError] = useState('')
+  const [seriesList, setSeriesList] = useState<Series[]>([])
   const [params, setParams] = useSearchParams()
   const tag = params.get('tag')
   const q = params.get('q') ?? ''
@@ -35,13 +37,35 @@ export default function BlogIndex() {
         console.error(e)
         setError('Could not load posts.')
       })
+    listListedSeries()
+      .then(setSeriesList)
+      .catch(e => console.warn('series not loaded', e))
     return () => {
       document.title = 'Stockton Jenkins'
     }
   }, [])
 
   const allTags = useMemo(() => Array.from(new Set((posts ?? []).flatMap(p => p.tags))).sort(), [posts])
-  const index = useMemo(() => buildIndex(posts ?? []), [posts])
+  // Public series with their published parts, most recently updated first.
+  const seriesById = useMemo(() => new Map(seriesList.map(s => [s.id, s])), [seriesList])
+  const seriesCards = useMemo(
+    () =>
+      seriesList
+        .map(s => ({ series: s, parts: seriesParts(posts ?? [], s.id) }))
+        .filter(x => x.parts.length > 0)
+        .sort((a, b) => latest(b.parts) - latest(a.parts)),
+    [seriesList, posts],
+  )
+  const seriesLabel = (p: Post) => {
+    const s = p.series ? seriesById.get(p.series) : undefined
+    if (!s) return null
+    const n = seriesParts(posts ?? [], s.id).findIndex(x => x.id === p.id) + 1
+    return n > 0 ? { series: s, part: n } : null
+  }
+  const index = useMemo(
+    () => buildIndex(posts ?? [], p => (p.series ? seriesById.get(p.series)?.title ?? '' : '')),
+    [posts, seriesById],
+  )
   const byTag = (p: Post) => !tag || p.tags.includes(tag)
   const hits: Hit[] | null = !isEmptyQuery(q) ? search(index, q).filter(h => byTag(h.post)) : null
   const shown = hits ? hits.map(h => h.post) : (posts ?? []).filter(byTag)
@@ -117,9 +141,31 @@ export default function BlogIndex() {
                   <time>{formatDate(featured.publishedAt)}</time> · {featured.readingMinutes} min read
                 </div>
                 <h2>{featured.title}</h2>
+                <SeriesTag label={seriesLabel(featured)} />
                 <Blurb post={featured} />
               </div>
             </Link>
+          )}
+          {!filtering && seriesCards.length > 0 && (
+            <section className="bl-series-strip" aria-label="Series">
+              <h2 className="bl-eyebrow">Series</h2>
+              <div className="bl-series-cards">
+                {seriesCards.map(({ series: s, parts }) => (
+                  <Link key={s.id} to={`/blog/series/${s.slug}`} className="bl-series-card">
+                    <div className="bl-card-meta">
+                      <span className={`bl-series-status bl-series-status-${s.status}`}>
+                        {s.status === 'active' ? 'Ongoing' : 'Complete'}
+                      </span>
+                      <span>
+                        {parts.length} {parts.length === 1 ? 'post' : 'posts'}
+                      </span>
+                    </div>
+                    <h3>{s.title}</h3>
+                    {s.description && <p>{s.description}</p>}
+                  </Link>
+                ))}
+              </div>
+            </section>
           )}
           <ul className="bl-list">
             {(rest as Post[]).map(p => (
@@ -128,6 +174,7 @@ export default function BlogIndex() {
                   <time className="bl-list-date">{formatDate(p.publishedAt)}</time>
                   <div>
                     <h3>{p.title}</h3>
+                    <SeriesTag label={seriesLabel(p)} />
                     <Blurb post={p} />
                     {hits && <Snippet hit={hits.find(h => h.post.id === p.id)} />}
                     <div className="bl-list-tags">
@@ -164,5 +211,16 @@ function Snippet({ hit }: { hit?: Hit }) {
     <p className="bl-snippet">
       {hit.snippet.map((r, i) => (r.hit ? <mark key={i}>{r.text}</mark> : <React.Fragment key={i}>{r.text}</React.Fragment>))}
     </p>
+  )
+}
+
+const latest = (parts: Post[]) => Math.max(...parts.map(p => p.publishedAt ?? 0))
+
+function SeriesTag({ label }: { label: { series: Series; part: number } | null }) {
+  if (!label) return null
+  return (
+    <span className="bl-series-tag">
+      {label.series.title} · Part {label.part}
+    </span>
   )
 }

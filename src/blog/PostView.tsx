@@ -129,7 +129,16 @@ function ReadingProgress() {
   return <div className="bl-progress" style={{ transform: `scaleX(${p})` }} />
 }
 
-export default function PostView({ post, draft }: { post: Post; draft?: boolean }) {
+export default function PostView({
+  post,
+  draft,
+  beforeArticle,
+}: {
+  post: Post
+  draft?: boolean
+  /** Rendered between the header/cover and the body (e.g. the series box). */
+  beforeArticle?: React.ReactNode
+}) {
   const initialContent = useMemo(() => {
     try {
       const c = JSON.parse(post.content)
@@ -203,6 +212,7 @@ export default function PostView({ post, draft }: { post: Post; draft?: boolean 
           <img src={post.coverUrl} alt="" />
         </figure>
       )}
+      {beforeArticle}
       <article className="bl-article" ref={setArticle} onClick={onArticleClick}>
         <BlockNoteView editor={editor} editable={false} theme="light" className="bl-bn" />
         <Sidenotes article={article} notes={meta.footnotes} />

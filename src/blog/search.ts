@@ -63,13 +63,15 @@ export interface SearchIndex {
   vocab: string[]
 }
 
-export function buildIndex(posts: Post[]): SearchIndex {
+/** `seriesTitle` lets a search for a project's name find every post in its series. */
+export function buildIndex(posts: Post[], seriesTitle: (p: Post) => string = () => ''): SearchIndex {
   const df = new Map<string, number>()
   const docs = posts.map(post => {
     const body = docToText(post.content)
     const tf = new Map<string, number>()
     let len = 0
-    for (const f of FIELDS) {
+    const fields = [...FIELDS, { weight: 3, get: (p: Post) => seriesTitle(p) }]
+    for (const f of fields) {
       for (const t of tokenize(f.get(post, body))) {
         tf.set(t, (tf.get(t) ?? 0) + f.weight)
         len += f.weight

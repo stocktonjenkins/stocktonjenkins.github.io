@@ -18,6 +18,14 @@ service cloud.firestore {
         && request.resource.data.views == resource.data.get('views', 0) + 1;
     }
 
+    // Series: public only while `listed` (kept equal to "has a published post"),
+    // so an unannounced project's series stays private. Public queries must
+    // filter on listed == true to pass this rule.
+    match /series/{seriesId} {
+      allow read: if resource.data.listed == true || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
     // Admin-only settings, e.g. the Gemini API key used by the editor.
     match /config/{doc} {
       allow read, write: if isAdmin();
