@@ -1,0 +1,30 @@
+rules_version = '2';
+
+// Replace ADMIN_UID with your Firebase Auth UID (shown on /write after you sign in).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'qSwq5h9Wy3OJ9V4eeuICIuUNLz23';
+    }
+
+    match /posts/{postId} {
+      // Anyone can read published posts; drafts are visible only to the admin.
+      // Public list queries must filter on published == true to pass this rule.
+      allow read: if resource.data.published == true || isAdmin();
+      allow create, update, delete: if isAdmin();
+      // Anyone may add exactly one view to a published post, and change nothing else.
+      allow update: if resource.data.published == true
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['views'])
+        && request.resource.data.views == resource.data.get('views', 0) + 1;
+    }
+
+    // Admin-only settings, e.g. the Gemini API key used by the editor.
+    match /config/{doc} {
+      allow read, write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

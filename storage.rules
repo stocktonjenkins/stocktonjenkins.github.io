@@ -1,0 +1,18 @@
+rules_version = '2';
+
+// Replace ADMIN_UID with your Firebase Auth UID (same value as firestore.rules).
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /blog/{postId}/{file} {
+      allow read: if true;
+      allow write: if request.auth != null
+                   && request.auth.uid == 'qSwq5h9Wy3OJ9V4eeuICIuUNLz23'
+                   && request.resource.size < 15 * 1024 * 1024
+                   && request.resource.contentType.matches('image/.*|video/.*|application/pdf');
+      allow delete: if request.auth != null && request.auth.uid == 'qSwq5h9Wy3OJ9V4eeuICIuUNLz23';
+    }
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

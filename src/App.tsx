@@ -1,26 +1,8 @@
-import React, { CSSProperties, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ReactComponent as UWCrest } from './uw-crest.svg'
 
-// ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
-const C = {
-  bg: '#f2f1ed',
-  bgAlt: '#ebeae5',
-  bgCard: '#e6e5e0',
-  bgCardHover: '#dddcd7',
-  text: '#26251e',
-  textSec: 'rgba(38,37,30,0.55)',
-  textMuted: 'rgba(38,37,30,0.38)',
-  accent: '#f54e00',
-  accentHover: '#cf2d56',
-  border: 'rgba(38,37,30,0.10)',
-  borderMed: 'rgba(38,37,30,0.20)',
-} as const
-
-const F = {
-  display: `'Barlow Condensed', system-ui, sans-serif`,
-  body: `'Crimson Pro', Georgia, serif`,
-  mono: `'IBM Plex Mono', ui-monospace, monospace`,
-} as const
+import { C, F } from './theming/tokens'
 
 // ─── CONTENT ──────────────────────────────────────────────────────────────────
 
@@ -69,6 +51,7 @@ const RESEARCH_INTERESTS = [
 ]
 
 const NEWS: { date: string; text: string }[] = [
+  { date: 'Nov 2026', text: '<strong>GRASP</strong> accepted to the <strong>EACL 2027</strong> Main Conference in Athens, Greece! 🇬🇷' },
   { date: 'Aug 2026', text: 'Asked to be VP of <a href="https://r2i.cs.wisc.edu/" target="_blank" rel="noopener noreferrer"><strong>R2I</strong></a>.' },
   { date: 'Aug 2026', text: '<strong>GRASP</strong> submitted to <strong>ACL 2026</strong> — under submission. Graph agentic retrieval achieving 40–50% fewer tokens than IRCoT+HippoRAG2 on multi-hop QA.' },
   { date: 'Jan 2026', text: 'Joined the <strong>HuLab</strong> (advised by Prof. Junjie Hu) at UW–Madison.' },
@@ -99,13 +82,13 @@ const PUBLICATIONS: Paper[] = [
   {
     title: 'GRASP: Graph Agentic Search over Propositions for Multihop Question Answering',
     authors: [ME, 'Ramya Vinayak', 'Junjie Hu'],
-    venue: 'ACL',
-    year: '2026',
+    venue: 'EACL',
+    year: '2027',
     abstract: 'GRASP is an agentic retrieval system that jointly optimizes accuracy and token efficiency for multi-hop QA. It decomposes queries into dependency-aware plans, scales sub-agents to question complexity, and retrieves via a novel three-layer hierarchical graph of entities, propositions, and passages. GRASP achieves highest QA accuracy on MuSiQue and 2WikiMultihopQA while using 40–50% fewer tokens than IRCoT+HippoRAG2.',
     links: [
       { label: 'OpenReview', href: '#' },
     ],
-    underReview: true,
+    underReview: false,
   },
   {
     title: 'Personalized Product Assortment with Real-time 3D Perception and Bayesian Payoff Estimation',
@@ -367,6 +350,7 @@ const NavBar: React.FC<{ active: string }> = ({ active }) => {
         </a>
 
         {/* Nav links — hidden on small screens */}
+        <div style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
         <div className="nav-links" style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
           {links.map(l => (
             <a
@@ -385,6 +369,23 @@ const NavBar: React.FC<{ active: string }> = ({ active }) => {
               {l.label}
             </a>
           ))}
+        </div>
+          <Link
+            to="/blog"
+            style={{
+              fontFamily: F.display,
+              fontSize: '14px',
+              fontWeight: 500,
+              letterSpacing: '0.04em',
+              color: C.text,
+              textDecoration: 'none',
+              padding: '3px 12px',
+              borderRadius: '9999px',
+              border: `1px solid ${C.borderMed}`,
+            }}
+          >
+            Blog
+          </Link>
         </div>
       </div>
     </nav>

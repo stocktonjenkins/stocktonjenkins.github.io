@@ -6,3 +6,8 @@ build/
 src/graphql/__generated__/
 yarn-error.log
 .env
+.env.local
+.env.*.local
+!.env.example
+.DS_Store
+.firebase/
